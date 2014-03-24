@@ -1,11 +1,8 @@
 --[[
 Levels will be set up here. Game will call the level, and the level
-(this) will call an external file (xml?) to determine these things:
-1: Recipe name
-2: List of actual ingredients to load
-3: List of dummy ingredients
-4: Level stats (time needed to win, accuracy needed to win and
-presentation needed to win, chef stuff?, and anything I'm forgetting)
+(this) will call an external file to determine these things:
+1: Name of level
+2: Recipes included in the level
 External files will needed to be named sequentially, for example
 level_1, level_2, level_3 etc.. and we will iterate through those files
 as the player beats levels and progresses. 
@@ -34,16 +31,13 @@ A level consists of:
 -Level name, as define in level_x.txt 
 -recipes, as defined in level_x.txt
 -ingredients, pulled from recipe.ingredients[] object--]]
-function New(levelName, recipes, ingredients)
+function New(levelName, recipeArray)
 	name = levelName
 
-	--This loop creates an array of strings which will be our Ingredient/TextObject IDs
-	local pantryIngredients= {}
-	--[[!!!!!*****UNCOMMENT ONCE RECIPE CLASS IS CREATED
-	for i, v in ipairs(recipe.ingredients) do
-		actualIngredients[key] = ingredients
+	--Initialize recipes in level
+	for key, value in pairs(recipeArray) do
+		recipe.init(value)
 	end
-	!!!!!*****--]]
 end
 
 --[[init()- called from game.init(). Game controls the current level
@@ -60,19 +54,19 @@ function init(levelIndex)
 	local ingIndex = 1  -- Used to index in loading ingredients loop
 	local recipeArray = {} -- Used to hold our recipes list
 	local recipeIndex = 1 -- Used to assign recipes to our recipeArray
-
+	
 	-- Open the file
-	local file = io.open("level_" .. levelIndex .. ".txt", "r")
+	local file = io.open("levels/level_" .. levelIndex .. ".txt", "r")
 	if not file then
 		name="error"
 		return false
 	end
 	
 	-- Read the lines in the file
-	for line in io.lines("level_" .. levelIndex .. ".txt") do
+	for line in io.lines("levels/level_" .. levelIndex .. ".txt") do
 		-- First, we place each value in the line into our array
 		for value in string.gmatch(line, '([^,]+)') do
-			tempArray[index] = value -- Add each value as an index
+			tempArray[index] = value -- Add each value to temp array
 			index = index + 1 -- Increment our index
 		end
 		
@@ -85,8 +79,8 @@ function init(levelIndex)
 			recipeArray[recipeIndex] = tempArray[2]
 			recipeIndex = recipeIndex + 1
 		end
-
-		index = 0 -- recset our index to 0 to evaluate the next line
+		
+		index = 1 -- reset our index to 0 to evaluate the next line
 	end
-	New(lvlName)
+	New(lvlName,recipeArray)
 end

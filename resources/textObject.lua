@@ -3,7 +3,7 @@ This is a TextObject that represents an ingredient in
 the pantry. TextObjects are created at the same time as Ingredient objects.
 When a TextObject is touched, it does two things:
 1) de-selects any other TextObject if isSelected=true
-2) makes it's matching Ingredient object draggable=true--]]
+2) makes it's matching Ingredient object draggable=true
 
 module(..., package.seeall)
 
@@ -38,4 +38,4 @@ function txtObj:init(o, ID, x, y)
 	o.sprite.xScale = txtObjActualWidth / txtObjWidth
 	o.sprite.yScale = txtObjActualHeight / txtObjHeight
 	o.ID = ID
-end
+end--]]

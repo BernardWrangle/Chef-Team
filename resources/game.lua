@@ -16,19 +16,10 @@ local class = require("class")
 require("grid")
 require("mainMenu")
 require("pauseMenu")
+require("recipe")
 
 -- Local constants
---[[local maxIngredients = THIS WILL BE DETERMINED BY CALLING level.maxIng
-when that class is setup--]]
---[[startRoundTime == THIS WILL BE DETERMINED BY CALLING level.RoundTime--]]
---[[targetScore = THIS IS THE SCORE NEEDED TO PROGRESS TO NEXT LEVEL AND
-IS DETERMINED BY CALLING level.targetScore--]]
-local Pos1 = 8
-local Pos2 = 88
-local Pos3 = 168
-local Pos4 = 248
-local txtTouched = false --true if an item in top text has been touched
-
+RoundTime = 400  --round ends after 4 minutes
 fontScale = director.displayWidth / fontWidth
 actualFontHeight = fontHeight * fontScale
 graphicScale = director.displayWidth / graphicDesignWidth
@@ -36,6 +27,7 @@ gridActualHeight = 64 * ingredientCountY--[[replace with ingredient.IngredientHe
 gridOffsetX = 41 * graphicScale -- Grid offset screen position on x-axis
 gridOffsetY = 37 * graphicScale -- Grid offset screen position on y-axis
 defaultFont = director:createFont("fonts/ComicSans24.fnt")
+
 
 gameStates = {
 	paused				= 0, --Game is paused
@@ -59,12 +51,17 @@ local ingredientGrid			--Grid of ingredients
 local gridTouchX = -1			--X Location on grid of touch
 local gridTouchY = -1			--Y Location on grid of touch
 local levelIndex = 1			--current level, start at 1
+local Pos1 = 8
+local Pos2 = 88
+local Pos3 = 168
+local Pos4 = 248
+
 
 --UI components
 --local timerLabelText
 --local pauseSprite
 local uiYPosition = director.displayHeight
-local recipeName
+
 
 -- Changes the game state
 function changeGameState(game_state)
@@ -75,20 +72,7 @@ end
 	-- initRound()
 	-- Log new game event
 	-- stats:logEvent("New Game")
---end]]--
-
---Text Touch handler called when user touches text at top of screen
---function txtTouch(event)
---[[*****!!!!! in here, we need to determine:
-1: If no other text is active (has been touched) activate this text 
-(set txtTouched to true) and remove the other two text sprite from the screen
-2: If text is active (has been touched) deactivate (set txtTouched to false),
-destroy the text sprite and then display three more pieces of random text (probably by calling
-a function that controls the text being displayed)
-3:If no other text is active, determine which ingredient in the pantry
-matches the text, and make that pantry item draggable.
-!!!!!*****--]]
---end
+end--]]
 
 --[[*****!!!!!MAIN GAME LOOP. UPDATE EVERYTHING, TIMER SCORES
 IN HERE Game update loop
@@ -174,6 +158,11 @@ function init()
 
 	--initialze level
 	level.init(levelIndex)
+	
+	--initialize recipes in level
+	--for key, value in level.recipes do
+	--	recipe.init(level.recipes[key])
+	--end
 
 	-- initialize interface
 	initUI()

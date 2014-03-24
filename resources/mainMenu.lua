@@ -43,7 +43,7 @@ function init()
 	background.yScale = director.displayHeight / 1136
 
 	-- Create Start Game button
-	playButton = director:createSprite(director.displayCenterX, 288, "textures/start.png")
+	playButton = director:createSprite(director.displayCenterX, 348, "textures/start.png")
 	playButton.xAnchor = 0.5
 	playButton.yAnchor = 0.5
 	playButton.xScale = 0.5

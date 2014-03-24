@@ -23,15 +23,10 @@ function exit(event)
 	unrequire("class")
 	unrequire("level")
 	unrequire("grid")
-	unrequire("textObject")
-	--unrequire("xmlSimple")
+	--unrequire("textObject")
+	unrequire("recipe")
 end
 system:addEventListener("exit", exit)
-
---require("mainMenu")
---require("game")
---require("Options")
---require("Recipes")
 
 -- Switch to specific scene
 function switchToScene(scene_name)
