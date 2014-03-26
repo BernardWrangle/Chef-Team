@@ -32,6 +32,8 @@ assets
 	audio
 	fonts
 	textures
+	recipes
+	levels
 }
 
 deployments
