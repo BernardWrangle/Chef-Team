@@ -160,9 +160,6 @@ function init()
 	level.init(levelIndex)
 	
 	--initialize recipes in level
-	--for key, value in level.recipes do
-	--	recipe.init(level.recipes[key])
-	--end
 
 	-- initialize interface
 	initUI()

@@ -18,10 +18,19 @@ require("class")
 require("game")
 
 -- Global vars
-name		= ""		-- name of level
-recipes		= {}		-- pool of ingredients
-pantryIngredients = {}	-- ingredients to include in pantry (pulled from recipes)
+name				= ""	-- name of level
+recipes				= {}	-- pool of recipes
+produceIng			= {}	-- ingredients to include in produce+grains pantry (pulled from recipes)
+herbIng				= {}	-- ingredients to include in herb+spice pantry
+meatIng				= {}	-- ingredients to include in meat+dairy pantry
+activeRecipe		= ""	-- name of the active recipe. Active recipe is one that has it's quantities in the bottom section
 
+-- Constants
+INGREDIENT_TYPE		= {
+Produce = "produce",
+Meat	= "meat",
+Herb	= "herb"
+}
 
 -- Level
 level = inheritsFrom(baseClass)
@@ -37,6 +46,24 @@ function New(levelName, recipeArray)
 	--Initialize recipes in level
 	for key, value in pairs(recipeArray) do
 		recipe.init(value)
+		recipes[key] = recipe		   -- an array of all recipe objects in level
+		print("key=" .. key)
+
+		-- Initialize lists of ingredient types
+		for i, j in pairs(recipes[key].ingredients) do
+			local type = recipes[key].ingredientType[i]
+			print("value= " .. j .. type)   -- tesing to see if objects are correct
+			
+			if type == "produce" then
+				produceIng[i] = j
+
+			elseif type == "herb" then
+				herbIng[i] = j
+
+			elseif type == "meat" then
+				meatIng[i] = j
+			end
+		end
 	end
 end
 
@@ -58,7 +85,7 @@ function init(levelIndex)
 	-- Open the file
 	local file = io.open("levels/level_" .. levelIndex .. ".txt", "r")
 	if not file then
-		name="error"
+		print("error, recipe file not found name = levels/level_" .. levelIndex .. ".txt")
 		return false
 	end
 	

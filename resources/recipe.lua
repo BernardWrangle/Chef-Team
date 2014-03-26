@@ -16,7 +16,7 @@ require("level")
 name		=	""	--recipe name
 recipeType	=	""	--type of recipe
 ingredients	=	{}	--ingredients in recipe
-ingredientType =	{} --either produceG,herbsSp,meatD (meat+dairy)
+ingredientType =	{} --either 1=produce+grains, 2=herbs+spices, 3=meat+grains
 quantity	=	{}	--this applies to the amount of each ingredient and is always the same index as the ingredient it relates to. So quantity[5] refers to the amount of ingredient[5] in the recipe
 price		=	""	--base price earned from recipe
 cookTime	=	""	--time in seconds it take to prepare recipe
@@ -25,25 +25,25 @@ cookTime	=	""	--time in seconds it take to prepare recipe
 recipe = inheritsFrom(baseClass)
 
 --[[Called by level, this opens up the correct recipe file
--the file should be name "(recipe-name).txt" and it should
+-the file should be name "<recipe-name>.txt" and it should
 -inlude the ingredients in the recipe, base the dollar amount -earned from cooking the recipe, the type of recipe and the
 -ingredients in the recipe
 --]]
 function init(recipeName)
-	name = recipeName
+	path = "recipes/" .. recipeName .. ".txt"
+	print(path)
 	local tempArray = {}
 	local index = 1
 	local ingredientIndex = 1
-	
-	
-	local file = io.open("recipes/" .. name .. ".txt", "r")
+
+	local file = io.open(path, "r")
 	if not file then
-		print("error, recipe file not found name = recipes/" .. name .. ".txt")
+		print("-----ERROR-----, recipe file not found: path = " .. path)
 		return false
 	end
 	
 	--read the lines of the file
-	for line in io.lines(name .. ".txt") do
+	for line in io.lines(path) do
 		for value in string.gmatch(line, '([^,]+)') do
 			tempArray[index] = value
 			index = index + 1 
@@ -73,7 +73,6 @@ function init(recipeName)
 			cookTime = tempArray[2]
 		end
 		
-		index = 0 -- reset index before next line
+		index = 1 -- reset index before next line
 	end
 end
-

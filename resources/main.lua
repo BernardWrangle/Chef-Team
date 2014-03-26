@@ -23,7 +23,6 @@ function exit(event)
 	unrequire("class")
 	unrequire("level")
 	unrequire("grid")
-	--unrequire("textObject")
 	unrequire("recipe")
 end
 system:addEventListener("exit", exit)

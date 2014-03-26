@@ -10,7 +10,10 @@ require("game")
 require("level") --we will be pulling information such as type,x,y from level eventually
 
 -- Globals
+name				=	""		-- name of ingredient
+type				=	""		-- type of ingredient (either P(produce+grain), M(meat+dairy), H(herb+spice)
 isSelected			= false		-- this will be true if this object draggable=true and is touched
+quantity			=	""		-- quantity of ingredient, i.e. "1CUP", "1TBLS", etc...
 ingredientWidth		= 64
 ingredientHeight	= 64
 ingredientRetractSpeed	= 500	--This is the speed at which the ingredient moves back to it's position in the row if not placed in staging area
