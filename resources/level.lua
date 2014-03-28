@@ -24,6 +24,7 @@ produceIng			= {}	-- ingredients to include in produce+grains pantry (pulled fro
 herbIng				= {}	-- ingredients to include in herb+spice pantry
 meatIng				= {}	-- ingredients to include in meat+dairy pantry
 activeRecipe		= ""	-- name of the active recipe. Active recipe is one that has it's quantities in the bottom section
+background			= nil	-- background image for level
 
 -- Constants
 INGREDIENT_TYPE		= {
@@ -34,6 +35,28 @@ Herb	= "herb"
 
 -- Level
 level = inheritsFrom(baseClass)
+
+--[[
+Load the levels recipes, ingredients, and prep area
+--]]
+function Load()
+	-- Load background for level first
+	local bg = director:createSprite(director.displayCenterX, director.displayCenterY, "textures/backgrounds/" .. background .. ".png")
+	bg.xAnchor = 0.5
+	bg.yAnchor = 0.5
+	-- Fit background to screen size
+	local bg_width, bg_height = bg:getAtlas():getTextureSize()
+	bg.xScale = director.displayWidth / bg_width
+	bg.yScale = director.displayHeight / bg_height
+
+	-- Load pantries
+
+	-- Load prep area
+
+	-- Load Tickets
+
+	-- Load ingredients
+end
 
 --[[
 A level consists of:
@@ -52,7 +75,7 @@ function New(levelName, recipeArray)
 		-- Initialize lists of ingredient types
 		for i, j in pairs(recipes[key].ingredients) do
 			local type = recipes[key].ingredientType[i]
-			print("value= " .. j .. type)   -- tesing to see if objects are correct
+			--print("value= " .. j .. type)   -- tesing to see if objects are correct
 			
 			if type == "produce" then
 				produceIng[i] = j
@@ -100,12 +123,15 @@ function init(levelIndex)
 		-- Evaluate first value in string, make decisions from there
 		if tempArray[1] == "name" then
 			lvlName = tempArray[2]
-		end
-
-		if tempArray[1] == "recipe" then
+		
+		elseif tempArray[1] == "recipe" then
 			recipeArray[recipeIndex] = tempArray[2]
 			recipeIndex = recipeIndex + 1
+		
+		elseif tempArray[1] == "background" then
+			background = tempArray[2]
 		end
+
 		
 		index = 1 -- reset our index to 0 to evaluate the next line
 	end

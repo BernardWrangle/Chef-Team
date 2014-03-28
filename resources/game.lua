@@ -10,6 +10,14 @@ ingredientCountY = 3		--total row in pantry
 graphicDesignWidth = 768
 fontHeight = 15
 fontWidth = 320
+RoundTime = 400  --round ends after 4 minutes
+fontScale = director.displayWidth / fontWidth
+actualFontHeight = fontHeight * fontScale
+graphicScale = director.displayWidth / graphicDesignWidth
+gridActualHeight = 64 * ingredientCountY--[[replace with ingredient.IngredientHeight * ingredientCountY--]]
+gridOffsetX = 41 * graphicScale -- Grid offset screen position on x-axis
+gridOffsetY = 37 * graphicScale -- Grid offset screen position on y-axis
+defaultFont = director:createFont("fonts/ComicSans24.fnt")
 
 --OO functions
 local class = require("class")
@@ -19,14 +27,7 @@ require("pauseMenu")
 require("recipe")
 
 -- Local constants
-RoundTime = 400  --round ends after 4 minutes
-fontScale = director.displayWidth / fontWidth
-actualFontHeight = fontHeight * fontScale
-graphicScale = director.displayWidth / graphicDesignWidth
-gridActualHeight = 64 * ingredientCountY--[[replace with ingredient.IngredientHeight * ingredientCountY--]]
-gridOffsetX = 41 * graphicScale -- Grid offset screen position on x-axis
-gridOffsetY = 37 * graphicScale -- Grid offset screen position on y-axis
-defaultFont = director:createFont("fonts/ComicSans24.fnt")
+
 
 
 gameStates = {
@@ -42,7 +43,7 @@ gameStates = {
 -- The game scene
 gameScene = nil
 
--- Game state
+-- locals
 local currentRecipeIndex = 1    --Current recipe in play
 local currentRecipeTime = 0     --Amount of time passed since start
 local currentRecipeScore = 0	--Current recipe score
@@ -55,6 +56,8 @@ local Pos1 = 8
 local Pos2 = 88
 local Pos3 = 168
 local Pos4 = 248
+local levelName
+local ingredientsGrid
 
 
 --UI components
@@ -104,7 +107,7 @@ function initUI()
 	in the future we will need some way of telling the game which ingredients 
 	to pick and where to place them by reading an external file of some sort (xml?)!!!!!*****--]]
 
-	-- Create game background
+	--[[ Create game background  (Should be done in level.Load())
 	local background = director:createSprite(director.displayCenterX, director.displayCenterY, "textures/game_bg.png")
 	background.xAnchor = 0.5
 	background.yAnchor = 0.5
@@ -112,9 +115,12 @@ function initUI()
 	local bg_width, bg_height = background:getAtlas():getTextureSize()
 	background.xScale = director.displayWidth / bg_width
 	background.yScale = director.displayHeight / bg_height
-	
-	-- Recipe name at top of screen
-	recipeName = director:createLabel({
+	--]]
+
+	level.Load()
+
+	-- Recipe name at top of screen (should be done in level.Load())
+	levelName = director:createLabel({
 		x = 20 * fontScale, y = uiYPosition - 20 * fontScale,
 		w = director.displayWidth, h = actualFontHeight,
 		text=level.name, 
@@ -126,15 +132,16 @@ function initUI()
 	})
 
 	--Create ingredients
-	orange = director:createSprite(Pos1,310,"textures/ingredients/orange.png")
-	greenBeans = director:createSprite(Pos2,310,"textures/ingredients/greenbean.png")
-	cranberries = director:createSprite(Pos3,310,"textures/ingredients/cranberries.png")
-	breadcrumb = director:createSprite(Pos4,310,"textures/ingredients/breadcrumbs.png")
+	
+	orange = director:createSprite(Pos1,310,"textures/ingredients/produce/orange.png")
+	greenBeans = director:createSprite(Pos2,310,"textures/ingredients/produce/greenbean.png")
+	cranberries = director:createSprite(Pos3,310,"textures/ingredients/produce/cranberries.png")
+	breadcrumb = director:createSprite(Pos4,310,"textures/ingredients/produce/breadcrumbs.png")
 	-- Herbs
-	rosemary = director:createSprite(Pos1,240,"textures/ingredients/rosemary.png")
-	salt = director:createSprite(Pos2,240,"textures/ingredients/salt.png")
-	pepper = director:createSprite(Pos3,240,"textures/ingredients/pepper.png")
-	thyme = director:createSprite(Pos4,240,"textures/ingredients/thyme.png")
+	rosemary = director:createSprite(Pos1,240,"textures/ingredients/herb/rosemary.png")
+	salt = director:createSprite(Pos2,240,"textures/ingredients/herb/salt.png")
+	pepper = director:createSprite(Pos3,240,"textures/ingredients/herb/pepper.png")
+	thyme = director:createSprite(Pos4,240,"textures/ingredients/herb/thyme.png")
 
 	--[[*****!!!!!
 	We'll need to create a different way to 
@@ -159,7 +166,8 @@ function init()
 	--initialze level
 	level.init(levelIndex)
 	
-	--initialize recipes in level
+	-- Create Ingredient grid
+	--ingredientGrid
 
 	-- initialize interface
 	initUI()
