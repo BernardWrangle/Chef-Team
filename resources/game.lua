@@ -5,8 +5,6 @@ Main game logic
 module(..., package.seeall)
 
 -- Global Constants
-ingredientCountX = 4		--Total columns in pantry grid (test value of 4 right now, later will be expanded)
-ingredientCountY = 3		--total row in pantry	
 graphicDesignWidth = 768
 fontHeight = 15
 fontWidth = 320
@@ -14,9 +12,6 @@ RoundTime = 400  --round ends after 4 minutes
 fontScale = director.displayWidth / fontWidth
 actualFontHeight = fontHeight * fontScale
 graphicScale = director.displayWidth / graphicDesignWidth
-gridActualHeight = 64 * ingredientCountY--[[replace with ingredient.IngredientHeight * ingredientCountY--]]
-gridOffsetX = 41 * graphicScale -- Grid offset screen position on x-axis
-gridOffsetY = 37 * graphicScale -- Grid offset screen position on y-axis
 defaultFont = director:createFont("fonts/ComicSans24.fnt")
 
 --OO functions
@@ -25,9 +20,9 @@ require("grid")
 require("mainMenu")
 require("pauseMenu")
 require("recipe")
+require("level")
 
 -- Local constants
-
 
 
 gameStates = {
@@ -56,9 +51,6 @@ local Pos1 = 8
 local Pos2 = 88
 local Pos3 = 168
 local Pos4 = 248
-local levelName
-local ingredientsGrid
-
 
 --UI components
 --local timerLabelText
@@ -117,23 +109,14 @@ function initUI()
 	background.yScale = director.displayHeight / bg_height
 	--]]
 
-	level.Load()
+	level.Load(fontScale, uiYPosition, actualFontHeight, defaultFont)
 
 	-- Recipe name at top of screen (should be done in level.Load())
-	levelName = director:createLabel({
-		x = 20 * fontScale, y = uiYPosition - 20 * fontScale,
-		w = director.displayWidth, h = actualFontHeight,
-		text=level.name, 
-		hAlignment="left", vAlignment="top",
-		font=defaultFont,
-		textXScale = fontScale,
-		textYScale = fontScale,
-		color = color.red
-	})
+	
 
 	--Create ingredients
 	
-	orange = director:createSprite(Pos1,310,"textures/ingredients/produce/orange.png")
+	--[[orange = director:createSprite(Pos1,310,"textures/ingredients/produce/orange.png")
 	greenBeans = director:createSprite(Pos2,310,"textures/ingredients/produce/greenbean.png")
 	cranberries = director:createSprite(Pos3,310,"textures/ingredients/produce/cranberries.png")
 	breadcrumb = director:createSprite(Pos4,310,"textures/ingredients/produce/breadcrumbs.png")
@@ -142,7 +125,7 @@ function initUI()
 	salt = director:createSprite(Pos2,240,"textures/ingredients/herb/salt.png")
 	pepper = director:createSprite(Pos3,240,"textures/ingredients/herb/pepper.png")
 	thyme = director:createSprite(Pos4,240,"textures/ingredients/herb/thyme.png")
-
+	--]]
 	--[[*****!!!!!
 	We'll need to create a different way to 
 	determine which pieces of text to display by examining an external file
@@ -163,7 +146,16 @@ function init()
 	-- create a scene via the director to contain the main game view
 	gameScene = director:createScene()
 
-	--initialze level
+	-- Initialize audio
+	-- initAudio() !!!!*****A yet-to-be-created funtion*****!!!!!
+
+	--[[Advertising stuff (show or hide) SEE: EXAMPLE Stage9
+	if (adverts.enabled == true) then
+	    adverts:show()
+	    uiYPosition = director.displayHeight - 70
+	end--]]
+
+	--initialze level information such as Level name, recipes and ingredients
 	level.init(levelIndex)
 	
 	-- Create Ingredient grid

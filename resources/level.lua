@@ -15,6 +15,7 @@ module(..., package.seeall)
 
 -- OO functions
 require("class")
+
 require("game")
 
 -- Global vars
@@ -25,21 +26,29 @@ herbIng				= {}	-- ingredients to include in herb+spice pantry
 meatIng				= {}	-- ingredients to include in meat+dairy pantry
 activeRecipe		= ""	-- name of the active recipe. Active recipe is one that has it's quantities in the bottom section
 background			= nil	-- background image for level
+ingredientCountY	= 3		-- total rows in pantry, will always be 3
+
+-- Local
+local ingredientsGrid		-- Grid of ingredients
+local prepContainerGrid		-- Grid of preperation containers
+local ingredientCountX		= 0	-- Total columns in pantry grid (test value of 4 right now, later will be expanded)
 
 -- Constants
-INGREDIENT_TYPE		= {
-Produce = "produce",
-Meat	= "meat",
-Herb	= "herb"
-}
+gridActualHeight	= 64 * ingredientCountY--[[replace with ingredient.IngredientHeight * ingredientCountY--]]
+gridOffsetX			= 41 * game.graphicScale -- Grid offset screen position on x-axis
+gridOffsetY			= 37 * game.graphicScale -- Grid offset screen position on y-axis	
+produceYPos			= 300
+herbYPos			= 230
+meatYPos			= 160
 
 -- Level
 level = inheritsFrom(baseClass)
 
 --[[
-Load the levels recipes, ingredients, and prep area
+Load the levels recipe tags, ingredient sprites, labels,
+pantry rows, prep area Fire It! and FX
 --]]
-function Load()
+function Load(fontScale, uiYPosition, actualFontHeight, defaultFont)
 	-- Load background for level first
 	local bg = director:createSprite(director.displayCenterX, director.displayCenterY, "textures/backgrounds/" .. background .. ".png")
 	bg.xAnchor = 0.5
@@ -49,13 +58,89 @@ function Load()
 	bg.xScale = director.displayWidth / bg_width
 	bg.yScale = director.displayHeight / bg_height
 
-	-- Load pantries
+	-- Level name
+	levelName = director:createLabel({
+		x = 20 * fontScale, 
+		y = uiYPosition - 20 * fontScale,
+		w = director.displayWidth,
+		h = actualFontHeight,
+		text=name, 
+		hAlignment="left", 
+		vAlignment="top",
+		font=defaultFont,
+		textXScale = fontScale,
+		textYScale = fontScale,
+		color = color.red
+	})
 
-	-- Load prep area
+	-- Level Timer
+	timerLabelText = director:createLabel({
+		x = director.displayWidth - 100 * fontScale, 
+		y = uiYPosition - 20 * fontScale,
+		w = director.displayWidth, 
+		h = actualFontHeight,
+		hAlignment = "left", 
+		vAlignment = "top",
+		font = defaultFont,
+		text = "Time",
+		textXScale = fontScale,
+		textYScale = fontScale,
+		color = color.red
+		})
 
+	timerLabel = director:createLabel({
+		x = -10 * fontScale, 
+		y = uiYPosition - 22 * fontScale,
+		w = director.displayWidth, 
+		h = actualFontHeight,
+		hAlignment="right", 
+		vAlignment="top",
+		text="12:20",
+		font=defaultFont,
+		textXScale = fontScale,
+		textYScale = fontScale,
+		color = color.black
+		})
+
+	-- Load pantry rows
+
+	-- Load prep area grid
+
+	-- Load produce pantry
+	local ingredientXPos = 0 -- starting position of ingredients in pantry row
+	local buffer = 64
+	local tempList = {""}		-- Use this to keep track of loaded assets, if already in this list, then it's already been loaded
+	local tempIndex = 1
+	local loaded = false
+	for key, value in pairs(produceIng) do
+		local type = "produce"
+		-- Load image
+		for i, j in pairs(tempList) do
+			print(j .. "::" .. value)
+			if j == value then
+				print("BREAK FOR DUPE")
+				loaded = true
+				break
+			end
+		end
+		if loaded == false then
+			tempList[tempIndex] = value
+			tempIndex = tempIndex + 1
+			LoadIngredientSprite(value, type, ingredientXPos)
+			ingredientXPos = ingredientXPos + buffer
+		end
+		loaded = false
+	end
+	-- Reset ourselves for the herb pantry
+	
+	ingredientXPos = 0
+	tempList = {""}
+	tempIndex = 1
+	
+	--ingredientsGrid = grid.new(ingredientCountY, ingredientCountX, gridOffsetX, gridOffsetY)
+	
 	-- Load Tickets
 
-	-- Load ingredients
 end
 
 --[[
@@ -67,24 +152,29 @@ function New(levelName, recipeArray)
 	name = levelName
 
 	--Initialize recipes in level
+	local produceIndex,herbIndex,meatIndex = 0
 	for key, value in pairs(recipeArray) do
 		recipe.init(value)
 		recipes[key] = recipe		   -- an array of all recipe objects in level
-		print("key=" .. key)
+		--TESTINGprint("key=" .. key)
 
 		-- Initialize lists of ingredient types
 		for i, j in pairs(recipes[key].ingredients) do
 			local type = recipes[key].ingredientType[i]
-			--print("value= " .. j .. type)   -- tesing to see if objects are correct
+			--TESTINGprint("value= " .. j .. type)   -- tesing to see if objects are correct
 			
 			if type == "produce" then
-				produceIng[i] = j
-
+				--TESTINGprint("value= " .. j .. type)
+				produceIng[produceIndex] = j   -- add ingredient to list
+				ingredientCountX = ingredientCountX + 1 --increase our number of ingredients in the level
+				produceIndex = produceIndex + 1
 			elseif type == "herb" then
 				herbIng[i] = j
+				ingredientCountX = ingredientCountX + 1
 
 			elseif type == "meat" then
 				meatIng[i] = j
+				ingredientCountX = ingredientCountX + 1
 			end
 		end
 	end
@@ -136,4 +226,9 @@ function init(levelIndex)
 		index = 1 -- reset our index to 0 to evaluate the next line
 	end
 	New(lvlName,recipeArray)
+end
+
+function LoadIngredientSprite(ingName, type, xPos)
+	print("LOADING INGREDIENT: " .. ingName .. " AT: " .. xPos)
+	ing = director:createSprite(xPos,produceYPos,"textures/ingredients/" .. type .. "/" .. ingName .. ".png")
 end

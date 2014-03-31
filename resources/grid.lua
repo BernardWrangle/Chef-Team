@@ -38,7 +38,7 @@ function grid:init(o,ingredients_wide,ingredients_high,ingredient_offset_x,ingre
 	o.offsetY = ingredients_offset_y
 
 	-- Create grid of ingredients
-	o.ingredientsGrid{}
+	o.ingredientsGrid = {}
 	for x = 1, ingredients_wide do
 		o.ingredientsGrid[x] = {}
 		for y = 0, ingredients_high do

@@ -1,5 +1,5 @@
 name,Caeser Salad,
-ingredient,Romaine,1 HEAD,produce,
+ingredient,Romaine_Lettuce,1 HEAD,produce,
 ingredient,Egg,1,meat,
 ingredient,Olive Oil,2 TBLS,herb,
 ingredient,Garlic,1 TBLS,produce,

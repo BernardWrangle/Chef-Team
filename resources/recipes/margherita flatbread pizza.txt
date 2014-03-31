@@ -1,6 +1,6 @@
 name,Margherita Flatbread Pizza,
-ingredient,Pizza Dough,1 LB,produce,
-ingredient,Crushed Tomatoes,2 CUPS,produce,
+ingredient,Dough,1 LB,produce,
+ingredient,Crushed_Tomatoes,2 CUPS,produce,
 ingredient,Garlic,4 CLOVES,produce,
 ingredient,Mozzarella,1 BALL,meat,
 ingredient,Basil,1 SPRIG,herb,
