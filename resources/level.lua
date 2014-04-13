@@ -15,7 +15,7 @@ module(..., package.seeall)
 
 -- OO functions
 require("class")
-
+require("ingredient")
 require("game")
 
 -- Global vars
@@ -102,17 +102,101 @@ function Load(fontScale, uiYPosition, actualFontHeight, defaultFont)
 		color = color.black
 		})
 
-	-- Load pantry rows
+	-- Load Kitchen icons
+	ProduceButton = director:createSprite(8, 228, "textures/icons/PantryBtn_Pro.png")
+	ProduceButton.xAnchor = 0
+	ProduceButton.yAnchor = 0
+	ProduceButton.xScale = 0.5
+	ProduceButton.yScale = 0.5
+	ProduceButton.addEventListener("touch", ProducePantry)
+
+	MeatButton = director:createSprite(110, 228, "textures/icons/PantryBtn_Meat.png")
+	MeatButton.xAnchor = 0
+	MeatButton.yAnchor = 0
+	MeatButton.xScale = 0.5
+	MeatButton.yScale = 0.5
+	MeatButton:addEventListener("touch", MeatPantry)
+	
+	HerbButton = director:createSprite(212, 228, "textures/icons/PantryBtn_Herbs.png")
+	HerbButton.xAnchor = 0
+	HerbButton.yAnchor = 0
+	HerbButton.xScale = 0.5
+	HerbButton.yScale = 0.5
+	HerbButton:addEventListener("touch", HerbPantry)
+	-- Load Ingredients
+	--LoadPantry()
 
 	-- Load prep area grid
 
 	-- Load produce pantry
-	local ingredientXPos = 0 -- starting position of ingredients in pantry row
-	local buffer = 64
+	
+	-- Load Tickets
+
+end
+
+function ProudcePantry()
+	timerLabel.text = "000"
+end
+
+function MeatPantry()
+
+end
+
+function HerbPantry()
+
+end
+
+function LoadPantry()
+	local ingredientXPos = 32 -- starting position of ingredients in pantry row
+	local ingredientYPos = 300
+	local Xbuffer = 64
+	local Ybuffer = 76
 	local tempList = {""}		-- Use this to keep track of loaded assets, if already in this list, then it's already been loaded
 	local tempIndex = 1
+	local rowCount = 0
 	local loaded = false
+
+	-- Run for produce+grains
 	for key, value in pairs(produceIng) do
+		local ingType = "produce"
+		print("!!" .. ingType .. "!!")
+		-- Check if this ingredient has already been loaded
+		for i, j in pairs(tempList) do
+			print(j .. "::" .. value)
+			if j == value then
+				print("BREAK")
+				loaded = true
+				break
+			end
+		end
+
+		if loaded == false then
+			tempList[tempIndex] = value
+			tempIndex = tempIndex + 1
+			print(value .. " " .. ingType)
+			ingredient.new(value, ingType, ingredientXPos, ingredientYPos)
+			rowCount = rowCount + 1
+			
+			-- once we've filled a row, we want to reset our X pos and Y pos
+			--[[
+			**TO DO**
+			**NEED TO ADD A CONDITION FOR IF WE'VE FILLED AN ENTIRE 
+			**PANTRY PAGE TO CREATE A NEW PAGE AND START FILLING IT WITH 
+			**INGREDIENTS
+			--]]
+			if rowCount > 3 then
+				rowCount = 0
+				ingredientXPos = 32
+				ingredientYPos = ingredientYPos - Ybuffer
+			else
+				ingredientXPos = ingredientXPos + Xbuffer
+			end
+		end
+		loaded = false
+	end
+
+	-- Run for herbs+spices
+	--[[for key, value in pairs(produceIng) do
 		local type = "produce"
 		-- Load image
 		for i, j in pairs(tempList) do
@@ -131,18 +215,28 @@ function Load(fontScale, uiYPosition, actualFontHeight, defaultFont)
 		end
 		loaded = false
 	end
-	-- Reset ourselves for the herb pantry
-	
-	ingredientXPos = 0
-	tempList = {""}
-	tempIndex = 1
-	
-	--ingredientsGrid = grid.new(ingredientCountY, ingredientCountX, gridOffsetX, gridOffsetY)
-	
-	-- Load Tickets
 
+	-- Run for meat+dairy
+	for key, value in pairs(produceIng) do
+		local type = "produce"
+		-- Load image
+		for i, j in pairs(tempList) do
+			print(j .. "::" .. value)
+			if j == value then
+				print("BREAK FOR DUPE")
+				loaded = true
+				break
+			end
+		end
+		if loaded == false then
+			tempList[tempIndex] = value
+			tempIndex = tempIndex + 1
+			LoadIngredientSprite(value, type, ingredientXPos)
+			ingredientXPos = ingredientXPos + buffer
+		end
+		loaded = false
+	end--]]
 end
-
 --[[
 A level consists of:
 -Level name, as define in level_x.txt 
@@ -152,29 +246,32 @@ function New(levelName, recipeArray)
 	name = levelName
 
 	--Initialize recipes in level
-	local produceIndex,herbIndex,meatIndex = 0
+	local produceIndex = 0
+	local herbIndex = 0
+	local meatIndex = 0
 	for key, value in pairs(recipeArray) do
 		recipe.init(value)
 		recipes[key] = recipe		   -- an array of all recipe objects in level
-		--TESTINGprint("key=" .. key)
+		--TESTprint("key=" .. key)
 
 		-- Initialize lists of ingredient types
 		for i, j in pairs(recipes[key].ingredients) do
 			local type = recipes[key].ingredientType[i]
-			--TESTINGprint("value= " .. j .. type)   -- tesing to see if objects are correct
+			print("value=" .. j .. " type=" .. type)   -- tesing to see if objects are correct
 			
 			if type == "produce" then
-				--TESTINGprint("value= " .. j .. type)
+				print("Inserting ingredient " .. j .. " into Produce array")
 				produceIng[produceIndex] = j   -- add ingredient to list
 				ingredientCountX = ingredientCountX + 1 --increase our number of ingredients in the level
 				produceIndex = produceIndex + 1
 			elseif type == "herb" then
-				herbIng[i] = j
+				herbIng[herbIndex] = j
 				ingredientCountX = ingredientCountX + 1
-
+				herbIndex = herbIndex + 1
 			elseif type == "meat" then
-				meatIng[i] = j
+				meatIng[meatIndex] = j
 				ingredientCountX = ingredientCountX + 1
+				meatIndex = meatIndex + 1
 			end
 		end
 	end
@@ -222,7 +319,6 @@ function init(levelIndex)
 			background = tempArray[2]
 		end
 
-		
 		index = 1 -- reset our index to 0 to evaluate the next line
 	end
 	New(lvlName,recipeArray)

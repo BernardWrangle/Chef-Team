@@ -17,26 +17,30 @@ quantity			=	""		-- quantity of ingredient, i.e. "1CUP", "1TBLS", etc...
 ingredientWidth		= 64
 ingredientHeight	= 64
 ingredientRetractSpeed	= 500	--This is the speed at which the ingredient moves back to it's position in the row if not placed in staging area
-originalPosX		= 0			--Keep track of original X pos, !!!NOT DEFINED ANYWHERE YET!!!
-originalPosY		= 0			--Keep track of original Y pos, !!!NOT DEFINED ANYWHERE YET!!!
+PosX				= 0			--Keep track of original X pos, !!!NOT DEFINED ANYWHERE YET!!!
+PosY				= 0			--Keep track of original Y pos, !!!NOT DEFINED ANYWHERE YET!!!
 draggable			= false		--This is true if the corresponding TextObject.isSelected=true
-ID					= nil		--Use this to match with txtObject IDs
+--ID					= nil		--Use this to match with txtObject IDs **REMOVED FROM PROJECT**
 
 -- Create the ingredient class
 ingredient = inheritsFrom(baseClass)
 
 -- Create the ingredient and place it
-function new(type, x, y)
-	local o = ingredient:create()
-	gem:init(o,type,x,y)
-	return o
+function new(name,type,x,y)
+	print("Loading Ingredient")
+	PosX = x
+	PosY = y
+	type = type
+	name = name
+	init(name, type)
 end
 
 -- Initialise the ingredient
-function ingredient:init(o, type, x, y)
+function init(name, type)
 	-- Create sprite
-	o.sprite = director:createSprite(x,y,"textures/ingredients" .. type .. ".png")
-	o.sprite.xScale = ingredientImageWidth
-	o.sprite.yScale = ingredientImageHeight
-	o.type = type
+	print("LOADING INGREDIENT: " .. name .. " AT: " .. PosX)
+	ing = director:createSprite(PosX,PosY,"textures/ingredients/" .. type .. "/" .. name .. ".png")
+	--ing.xScale = ingredientImageWidth
+	--ing.yScale = ingredientImageHeight
+	--ing.type = type
 end
