@@ -38,7 +38,7 @@ end
 -- Initialise the ingredient
 function init(name, type)
 	-- Create sprite
-	print("LOADING INGREDIENT: " .. name .. " AT: " .. PosX)
+	--TESTprint("LOADING INGREDIENT: " .. name .. " AT: " .. PosX)
 	ing = director:createSprite(PosX,PosY,"textures/ingredients/" .. type .. "/" .. name .. ".png")
 	--ing.xScale = ingredientImageWidth
 	--ing.yScale = ingredientImageHeight

@@ -1,0 +1,216 @@
+-- START TRACE TO FILE --
+tracing to: ''
+MarmaladeSDK v7.1.0 [358387] (S3E Loader v4.36.0)
+Copyright (C) 2001-2011 Ideaworks3D Ltd
+System Info:
+ OS           : WINDOWS (3)
+ OS Version   : Windows 6.1 (6.1)
+ Device ID    : Windows Simulator (0x1)
+ Device Class : WINDOWS_GENERIC (3000)
+ Phone Number : 0044123456789
+ Unique ID    : SIMULATOR_ID
+ Device Name  : My Computer
+ Memory       : 1048576KiB
+26/02/14 10:42:00.009: [0x12fc] DEVICE: Initialising FIBRE
+26/02/14 10:42:00.013: [0x12fc] DEVICE: Initialising THREAD
+26/02/14 10:42:00.016: [0x12fc] THREAD: s3eThreadCreateMain
+26/02/14 10:42:00.020: [0xfa0] DEVICE: Initialising SURFACE
+26/02/14 10:42:00.024: [0xfa0] SURFACE: s3eSurfaceSetup: PixelType=RGB888, pitch=0, ptr=0x00000000, blit=0
+26/02/14 10:42:00.027: [0xfa0] SURFACE: s3eSurfaceSetup: matches native type
+26/02/14 10:42:00.031: [0xfa0] SURFACE: s3eSurfaceSetup: no user surface needed
+26/02/14 10:42:00.034: [0xfa0] SURFACE: done s3eSurfaceInit: 800x600 p:1600 (800x600 p:1600) o:0
+26/02/14 10:42:00.038: [0xfa0] DEVICE: Initialising EXT
+26/02/14 10:42:00.042: [0xfa0] EXT: registering extension: s3eLibrary [0xe6dd6ce5]
+26/02/14 10:42:00.045: [0xfa0] EXT: registering extension: s3eExtLoadLibaray [0xf23d6d85]
+26/02/14 10:42:00.049: [0xfa0] EXT: registering extension: s3eCamera [0xa3e23039]
+26/02/14 10:42:00.053: [0xfa0] EXT: registering extension: s3eWindow [0xd31aa8a8]
+26/02/14 10:42:00.057: [0xfa0] EXT: registering extension: s3eVFS [0x17f48c9f]
+26/02/14 10:42:00.060: [0xfa0] EXT: registering extension: s3eContacts [0x5e39d2af]
+26/02/14 10:42:00.064: [0xfa0] EXT: registering extension: s3eSoundRecord [0x579dbf78]
+26/02/14 10:42:00.068: [0xfa0] EXT: registering extension: s3eTouchpad [0x1dbd7ce8]
+26/02/14 10:42:00.072: [0xfa0] EXT: registering extension: s3eDebugHeap [0xc667a795]
+26/02/14 10:42:00.076: [0xfa0] EXT: registering extension: s3eExtDebugHeap [0xff96de46]
+26/02/14 10:42:00.080: [0xfa0] EXT: registering extension: s3eClipboard [0xd68f3420]
+26/02/14 10:42:00.083: [0xfa0] EXT: registering extension: s3eOSExec [0xc121bcf7]
+26/02/14 10:42:00.087: [0xfa0] EXT: registering extension: s3eExtOSExec [0x20380948]
+26/02/14 10:42:00.091: [0xfa0] EXT: registering extension: s3eEval [0x167d1038]
+26/02/14 10:42:00.095: [0xfa0] EXT: registering extension: s3eExtEval [0xf0421449]
+26/02/14 10:42:00.099: [0xfa0] EXT: registering extension: s3eHighResTimer [0x41f2dedb]
+26/02/14 10:42:00.103: [0xfa0] EXT: registering extension: s3eOSReadString [0x9fe3ea45]
+26/02/14 10:42:00.107: [0xfa0] EXT: registering extension: s3eCameraCapture [0xd36aceed]
+26/02/14 10:42:00.111: [0xfa0] EXT: registering extension: s3eTestEmulatorConfig [0x4a0d0a4f]
+26/02/14 10:42:00.115: [0xfa0] EXT: registering extension: s3eThread [0xcc0b4a28]
+26/02/14 10:42:00.152: [0xfa0] EXT: registering extension: s3eCompass [0x40d632c6]
+26/02/14 10:42:00.164: [0xfa0] EXT: registering extension: Compass [0xd3653f1b]
+26/02/14 10:42:00.174: [0xfa0] EXT: registering extension: s3eSocketOpt [0x09cdcdec]
+26/02/14 10:42:00.180: [0xfa0] EXT: registering extension: s3eExtSocketOpt [0x42fd049d]
+26/02/14 10:42:00.187: [0xfa0] EXT: registering extension: s3eImagePicker [0xd2fc1d51]
+26/02/14 10:42:00.193: [0xfa0] EXT: registering extension: s3eTest [0x168503f0]
+26/02/14 10:42:00.200: [0xfa0] EXT: registering extension: s3eSMS [0x17f480c3]
+26/02/14 10:42:00.204: [0xfa0] EXT: registering extension: s3eMetrics [0x2bc8e047]
+26/02/14 10:42:00.209: [0xfa0] EXT: registering extension: Metrics [0xbe57ec9c]
+26/02/14 10:42:00.220: [0xfa0] EXT: registering extension: s3eLocation [0x91944229]
+26/02/14 10:42:00.224: [0xfa0] EXT: registering extension: Location [0x7604d91e]
+26/02/14 10:42:00.228: [0xfa0] EXT: registering extension: Win32Surface [0x909755c1]
+26/02/14 10:42:00.233: [0xfa0] EXT: registering extension: Win32UIProcessMessage [0x48f2a5ba]
+26/02/14 10:42:00.237: [0xfa0] EXT: registering extension: Win32DataDirChange [0xbfcfc057]
+26/02/14 10:42:00.241: [0xfa0] DEVICE: Initialising CONFIG
+26/02/14 10:42:00.246: [0xfa0] DEVICE: Initialising TIMER
+26/02/14 10:42:00.250: [0xfa0] DEVICE: Initialising COMPRESSION
+26/02/14 10:42:00.254: [0xfa0] DEVICE: DeviceInit done: services=0x0a216148
+26/02/14 10:42:00.259: [0xfa0] EXT: s3eExtGetHash: 0xd31aa8a8 [0x00000000 size=0]
+26/02/14 10:42:00.263: [0xfa0] EXT: initializing extension: s3eWindow
+26/02/14 10:42:00.267: [0xfa0] EXT: initializing extension: s3eWindow 0x5fc65c90
+26/02/14 10:42:00.272: [0xfa0] DEVICE: SetupPaths: NULL
+26/02/14 10:42:00.276: [0xfa0] LOADER: ParseCommandLineData [--dll="C:\Marmalade\7.1\quick\target\win\quick_prebuilt_d.s86" --data="C:\Users\Zachary\Documents\ChefTeam\resources" --app-icf1="C:\Users\Zachary\Documents\ChefTeam\resources\common.icf" --app
+26/02/14 10:42:00.281: [0xfa0] LOADER: setting [commandline]  dll=C:\Marmalade\7.1\quick\target\win\quick_prebuilt_d.s86
+26/02/14 10:42:00.285: [0xfa0] LOADER: setting [commandline]  data=C:\Users\Zachary\Documents\ChefTeam\resources
+26/02/14 10:42:00.290: [0xfa0] LOADER: setting [commandline]  app-icf1=C:\Users\Zachary\Documents\ChefTeam\resources\common.icf
+26/02/14 10:42:00.294: [0xfa0] LOADER: setting [commandline]  app-icf2=C:\Users\Zachary\Documents\ChefTeam\resources\app.icf
+26/02/14 10:42:00.299: [0xfa0] FILE: new filesystem: drive=0 type=0 ro=1 name=rom://
+26/02/14 10:42:00.304: [0xfa0] FILE: fs[00]: system[rom://] 'C:\Users\Zachary\Documents\ChefTeam\resources'
+26/02/14 10:42:00.308: [0xfa0] FILE: fs[03]: system[raw://] ''
+26/02/14 10:42:00.313: [0xfa0] FILE: listed 2 active filesystems
+26/02/14 10:42:00.317: [0xfa0] FILE: new filesystem: drive=1 type=0 ro=0 name=ram://
+26/02/14 10:42:00.322: [0xfa0] FILE: fs[00]: system[rom://] 'C:\Users\Zachary\Documents\ChefTeam\resources'
+26/02/14 10:42:00.327: [0xfa0] FILE: fs[01]: system[ram://] 'C:\Users\Zachary\Documents\ChefTeam\resources-ram'
+26/02/14 10:42:00.331: [0xfa0] FILE: fs[03]: system[raw://] ''
+26/02/14 10:42:00.336: [0xfa0] FILE: listed 3 active filesystems
+26/02/14 10:42:00.360: [0xfa0] FILE: new filesystem: drive=0 type=0 ro=1 name=rom://
+26/02/14 10:42:00.365: [0xfa0] FILE: new filesystem: drive=1 type=0 ro=0 name=ram://
+26/02/14 10:42:00.369: [0xfa0] LOADER: Using data directory C:\Users\Zachary\Documents\ChefTeam\resources as ROM drive
+26/02/14 10:42:00.374: [0xfa0] LOADER: Using directory C:\Users\Zachary\Documents\ChefTeam\resources-ram as RAM drive
+26/02/14 10:42:00.380: [0xfa0] FILE: s3eFileOpen('raw://C:\Marmalade\7.1\s3e/s3e.icf', 'rb') succeeded, id=1607589632 p=0x5fd1df00
+26/02/14 10:42:00.385: [0xfa0] LOADER: Loading config from: C:\Marmalade\7.1\s3e/s3e.icf
+26/02/14 10:42:00.390: [0xfa0] FILE: s3eFileClose h=0x5fd1df00
+26/02/14 10:42:00.395: [0xfa0] LOADER: Loading app-icf from command line specified location C:\Users\Zachary\Documents\ChefTeam\resources\common.icf
+26/02/14 10:42:00.400: [0xfa0] FILE: s3eFileOpen('raw://C:\Users\Zachary\Documents\ChefTeam\resources\common.icf', 'rb') succeeded, id=1000 p=0x5fd1f57c
+26/02/14 10:42:00.405: [0xfa0] LOADER: Loading config from: raw://C:\Users\Zachary\Documents\ChefTeam\resources\common.icf
+26/02/14 10:42:00.410: [0xfa0] FILE: s3eFileClose h=0x5fd1f57c
+26/02/14 10:42:00.416: [0xfa0] FILE: s3eFileOpen('raw://C:\Users\Zachary\Documents\ChefTeam\resources\app.icf', 'rb') succeeded, id=1001 p=0x5fd1f698
+26/02/14 10:42:00.420: [0xfa0] LOADER: Loading config from: raw://C:\Users\Zachary\Documents\ChefTeam\resources\app.icf
+26/02/14 10:42:00.426: [0xfa0] FILE: s3eFileClose h=0x5fd1f698
+26/02/14 10:42:00.431: [0xfa0] LOADER: ParseCommandLineData [--dll="C:\Marmalade\7.1\quick\target\win\quick_prebuilt_d.s86" --data="C:\Users\Zachary\Documents\ChefTeam\resources" --app-icf1="C:\Users\Zachary\Documents\ChefTeam\resources\common.icf" --app
+26/02/14 10:42:00.436: [0xfa0] LOADER: setting [commandline]  dll=C:\Marmalade\7.1\quick\target\win\quick_prebuilt_d.s86
+26/02/14 10:42:00.441: [0xfa0] LOADER: setting [commandline]  data=C:\Users\Zachary\Documents\ChefTeam\resources
+26/02/14 10:42:00.446: [0xfa0] LOADER: setting [commandline]  app-icf1=C:\Users\Zachary\Documents\ChefTeam\resources\common.icf
+26/02/14 10:42:00.451: [0xfa0] LOADER: setting [commandline]  app-icf2=C:\Users\Zachary\Documents\ChefTeam\resources\app.icf
+26/02/14 10:42:00.678: [0xfa0] SPLASH: displaying debug splash-screen
+26/02/14 10:42:00.686: [0xfa0] SPLASH: No splash screen specified
+26/02/14 10:42:00.714: [0xfa0] TOUCHPAD: Found touchpad size 0 0
+COCOS2DX LOG: cocos2d: cocos2d-2.1beta3-x-2.1.0
+26/02/14 10:42:02.742: [0xfa0] IW_GL: EGL: eglGetDisplay returned 07E52C70
+26/02/14 10:42:02.788: [0xfa0] IW_GL: eglInitialise succeeded - version 1.4
+26/02/14 10:42:02.794: [0xfa0] IW_GL: S3E_EGL_VERSION: 0104
+26/02/14 10:42:02.799: [0xfa0] IW_GL: S3E_GL_VERSION: 0200
+26/02/14 10:42:02.805: [0xfa0] IW_GL: EGL_VENDOR: Google Inc.
+26/02/14 10:42:02.810: [0xfa0] IW_GL: EGL_VERSION: 1.4 (ANGLE 1.0.0.1275)
+26/02/14 10:42:02.815: [0xfa0] IW_GL:     EGL_EXT_create_context_robustness
+26/02/14 10:42:02.821: [0xfa0] IW_GL:     EGL_ANGLE_d3d_share_handle_client_buffer
+26/02/14 10:42:02.826: [0xfa0] IW_GL:     EGL_ANGLE_query_surface_pointer
+26/02/14 10:42:02.831: [0xfa0] IW_GL:     EGL_ANGLE_surface_d3d_texture_2d_share_handle
+26/02/14 10:42:02.837: [0xfa0] IW_GL:     EGL_NV_post_sub_buffer
+26/02/14 10:42:02.843: [0xfa0] GL_CORE: rejecting config 0: EGL_DEPTH_SIZE < 16
+26/02/14 10:42:02.848: [0xfa0] GL_CORE: rejecting config 4: EGL_CONFIG_CAVEAT == EGL_SLOW_CONFIG
+26/02/14 10:42:02.854: [0xfa0] GL_CORE: rejecting config 5 RGB < 565
+26/02/14 10:42:02.859: [0xfa0] GL_CORE: rejecting config 6: EGL_CONFIG_CAVEAT == EGL_SLOW_CONFIG
+26/02/14 10:42:02.865: [0xfa0] GL_CORE: rejecting config 7 RGB < 565
+26/02/14 10:42:02.870: [0xfa0] GL_CORE: rejecting config 8: EGL_CONFIG_CAVEAT == EGL_SLOW_CONFIG
+26/02/14 10:42:02.876: [0xfa0] GL_CORE: rejecting config 9 RGB < 565
+26/02/14 10:42:02.881: [0xfa0] GL_CORE: rejecting config 10: EGL_CONFIG_CAVEAT == EGL_SLOW_CONFIG
+26/02/14 10:42:02.887: [0xfa0] GL_CORE: rejecting config 11 RGB < 565
+26/02/14 10:42:02.893: [0xfa0] GL_CORE: rejecting config 12: EGL_CONFIG_CAVEAT == EGL_SLOW_CONFIG
+26/02/14 10:42:02.898: [0xfa0] GL_CORE: rejecting config 13: EGL_CONFIG_CAVEAT == EGL_SLOW_CONFIG
+26/02/14 10:42:02.904: [0xfa0] GL_CORE: rejecting config 14: EGL_CONFIG_CAVEAT == EGL_SLOW_CONFIG
+26/02/14 10:42:02.910: [0xfa0] GL_CORE: rejecting config 15: EGL_CONFIG_CAVEAT == EGL_SLOW_CONFIG
+26/02/14 10:42:02.915: [0xfa0] GL_CORE: EGL: Chose EGL_CONFIG_ID 3
+26/02/14 10:42:02.947: [0xfa0] IW_GL: GL_VENDOR: Google Inc.
+26/02/14 10:42:02.953: [0xfa0] IW_GL: GL_RENDERER: ANGLE (ATI Radeon HD 5670)
+26/02/14 10:42:02.958: [0xfa0] IW_GL: GL_VERSION: OpenGL ES 2.0 (ANGLE 1.0.0.1275)
+26/02/14 10:42:02.964: [0xfa0] IW_GL: GL properties reported by driver:
+26/02/14 10:42:02.970: [0xfa0] IW_GL:     GL_MAX_COMBINED_TEXTURE_IMAGE_UNITS: 20
+26/02/14 10:42:02.975: [0xfa0] IW_GL:     GL_SHADER_COMPILER: 1
+26/02/14 10:42:02.981: [0xfa0] IW_GL:     GL_MAX_VERTEX_ATTRIBS: 16
+26/02/14 10:42:02.987: [0xfa0] IW_GL:     GL_MAX_VERTEX_UNIFORM_VECTORS: 254
+26/02/14 10:42:02.993: [0xfa0] IW_GL:     GL_MAX_VARYING_VECTORS: 10
+26/02/14 10:42:02.998: [0xfa0] IW_GL:     GL_MAX_TEXTURE_IMAGE_UNITS: 16
+26/02/14 10:42:03.004: [0xfa0] IW_GL:     GL_MAX_VERTEX_TEXTURE_IMAGE_UNITS: 4
+26/02/14 10:42:03.010: [0xfa0] IW_GL:     GL_MAX_FRAGMENT_UNIFORM_VECTORS: 221
+26/02/14 10:42:03.016: [0xfa0] IW_GL:     GL_MAX_CUBE_MAP_TEXTURE_SIZE: 16384
+26/02/14 10:42:03.022: [0xfa0] IW_GL:     GL_IMPLEMENTATION_COLOR_READ_FORMAT: GL_RGB
+26/02/14 10:42:03.028: [0xfa0] IW_GL:     GL_IMPLEMENTATION_COLOR_READ_TYPE: GL_UNSIGNED_SHORT_5_6_5
+26/02/14 10:42:03.034: [0xfa0] IW_GL:     GL_MAX_RENDERBUFFER_SIZE: 16384
+26/02/14 10:42:03.040: [0xfa0] IW_GL:     GL_POINT_SIZE_MAX: -1
+26/02/14 10:42:03.046: [0xfa0] IW_GL:     GL_MAX_TEXTURE_SIZE: 16384
+26/02/14 10:42:03.051: [0xfa0] IW_GL:     GL_MAX_VIEWPORT_DIMS: (16384, 16384)
+26/02/14 10:42:03.058: [0xfa0] IW_GL: Supported GL_EXTENSIONS:
+26/02/14 10:42:03.063: [0xfa0] IW_GL:     GL_OES_packed_depth_stencil
+26/02/14 10:42:03.069: [0xfa0] IW_GL:     GL_OES_element_index_uint
+26/02/14 10:42:03.075: [0xfa0] IW_GL:     GL_OES_texture_half_float_linear
+26/02/14 10:42:03.081: [0xfa0] IW_GL:     GL_NV_fence
+26/02/14 10:42:03.087: [0xfa0] IW_GL:     GL_EXT_read_format_bgra
+26/02/14 10:42:03.093: [0xfa0] IW_GL:     GL_OES_get_program_binary
+26/02/14 10:42:03.099: [0xfa0] IW_GL:     GL_OES_rgb8_rgba8
+26/02/14 10:42:03.105: [0xfa0] IW_GL:     GL_EXT_texture_compression_dxt1
+26/02/14 10:42:03.111: [0xfa0] IW_GL:     GL_ANGLE_texture_compression_dxt3
+26/02/14 10:42:03.117: [0xfa0] IW_GL:     GL_ANGLE_texture_compression_dxt5
+26/02/14 10:42:03.123: [0xfa0] IW_GL:     GL_ARB_texture_env_combine
+26/02/14 10:42:03.129: [0xfa0] IW_GL:     GL_OES_texture_npot
+26/02/14 10:42:03.135: [0xfa0] IW_GL:     GL_EXT_texture_format_BGRA8888
+26/02/14 10:42:03.141: [0xfa0] IW_GL:     GL_OES_texture_half_float
+26/02/14 10:42:03.147: [0xfa0] IW_GL:     GL_ANGLE_framebuffer_multisample
+26/02/14 10:42:03.153: [0xfa0] IW_GL:     GL_ANGLE_framebuffer_blit
+26/02/14 10:42:03.159: [0xfa0] IW_GL:     GL_OES_standard_derivatives
+26/02/14 10:42:03.165: [0xfa0] IW_GL:     GL_OES_texture_float
+26/02/14 10:42:03.171: [0xfa0] IW_GL:     GL_OES_texture_float_linear
+26/02/14 10:42:03.177: [0xfa0] IW_GL:     GL_EXT_texture_filter_anisotropic
+ERROR: S3E_FILE_ERR_NOT_FOUND in s3eFileOpen - Path arial.ttf not found
+ERROR: S3E_FILE_ERR_NOT_FOUND in s3eFileOpen - Path fonts/arial.ttf not found
+ERROR: S3E_FILE_ERR_NOT_FOUND in s3eFileOpen - Path fonts/marker felt.ttf not found
+ERROR: S3E_FILE_ERR_NOT_FOUND in s3eFileOpen - Path arial.ttf not found
+ERROR: S3E_FILE_ERR_NOT_FOUND in s3eFileOpen - Path fonts/arial.ttf not found
+ERROR: S3E_FILE_ERR_NOT_FOUND in s3eFileOpen - Path fonts/marker felt.ttf not found
+ERROR: S3E_FILE_ERR_NOT_FOUND in s3eFileOpen - Path arial.ttf not found
+ERROR: S3E_FILE_ERR_NOT_FOUND in s3eFileOpen - Path fonts/arial.ttf not found
+ERROR: S3E_FILE_ERR_NOT_FOUND in s3eFileOpen - Path fonts/marker felt.ttf not found
+
+
+QUICKCPP LOG: Marmalade Quick 1.1
+QUICKCPP LOG: Loading app configuration...
+ERROR: S3E_FILE_ERR_NOT_FOUND in s3eFileOpen - Path config.lua not found
+QUICKCPP WARNING: Failed to load config lua file
+QUICKCPP LOG: Loading Quick engine...
+COCOS2DX LOG: cocos2d: GL_VENDOR:     Google Inc.
+COCOS2DX LOG: cocos2d: GL_RENDERER:   ANGLE (ATI Radeon HD 5670)
+COCOS2DX LOG: cocos2d: GL_VERSION:    OpenGL ES 2.0 (ANGLE 1.0.0.1275)
+COCOS2DX LOG: cocos2d: GL_MAX_TEXTURE_SIZE: 16384
+COCOS2DX LOG: cocos2d: GL_MAX_TEXTURE_UNITS: 20
+COCOS2DX LOG: cocos2d: GL supports PVRTC: NO
+COCOS2DX LOG: cocos2d: GL supports BGRA8888 textures: NO
+COCOS2DX LOG: cocos2d: GL supports NPOT textures: YES
+COCOS2DX LOG: cocos2d: GL supports discard_framebuffer: NO
+COCOS2DX LOG: cocos2d: GL supports shareable VAO: NO
+COCOS2DX LOG: cocos2d: compiled with Profiling Support: NO
+QUICKCPP LOG: Loading app...
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/menu_bg.jpg
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/Single_Player.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/Multiplayer.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/Recipes.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/Option.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/Menu_button.png
+unrequiring
+26/02/14 10:42:18.944: [0xfa0] IW_GL: Leaked Program with handle 2
+26/02/14 10:42:18.953: [0xfa0] IW_GL: Leaked Program with handle 5
+26/02/14 10:42:18.961: [0xfa0] IW_GL: Leaked Texture with handle 1
+26/02/14 10:42:18.969: [0xfa0] IW_GL: Leaked Texture with handle 2
+26/02/14 10:42:18.976: [0xfa0] IW_GL: Leaked Texture with handle 3
+26/02/14 10:42:18.983: [0xfa0] IW_GL: Leaked Texture with handle 4
+26/02/14 10:42:18.990: [0xfa0] IW_GL: Leaked Texture with handle 5
+26/02/14 10:42:18.997: [0xfa0] IW_GL: Leaked Texture with handle 6
+26/02/14 10:42:19.004: [0xfa0] IW_GL: Terminating EGL...
+26/02/14 10:42:19.017: [0xfa0] IW_GL: Terminating EGL... Done
+COCOS2DX LOG: cocos2d: deallocing CCDirector 08002708
+unrequiring
+COCOS2DX LOG: cocos2d: cocos2d-2.1beta3-x-2.1.0
+COCOS2DX LOG: cocos2d: deallocing CCDirector 08005A28
+-- END TRACE --

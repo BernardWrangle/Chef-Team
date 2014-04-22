@@ -4,7 +4,7 @@ Main game logic
 
 module(..., package.seeall)
 
--- Global Constants
+-- Globals & constants
 graphicDesignWidth = 768
 fontHeight = 15
 fontWidth = 320
@@ -13,7 +13,7 @@ fontScale = director.displayWidth / fontWidth
 actualFontHeight = fontHeight * fontScale
 graphicScale = director.displayWidth / graphicDesignWidth
 defaultFont = director:createFont("fonts/ComicSans24.fnt")
-
+pantryType = ""
 --OO functions
 local class = require("class")
 require("grid")
@@ -21,21 +21,29 @@ require("mainMenu")
 require("pauseMenu")
 require("recipe")
 require("level")
+require("producePantry") 
+require("meatPantry") 
+require("herbPantry") 
+--This is used to determine which pantry to go to and which ingredients to load. Shared by Pantry.Lua and Level.Lua
 
 -- Local constants
 
 
 gameStates = {
 	paused				= 0, --Game is paused
-	waitingTxtSelection = 1, --Game is waiting for player to select a text object
-	waitingIngSelection = 2, --Text object has been selected, waiting for player to find ingredient
-	dragging			= 3, --Player is dragging ingredient
-	ingredientSnap		= 4, --Player has placed ingredient somewhere other than staging area, snapping ingredient back to it's orignal position
-	waitingFire			= 5, --All staging area slots are full, waiting for player to select "Fire It!"
-	levelOver			= 6 --Level has ended
+	producePantry		= 1, --Game is waiting for player to select a text object
+	meatPantry			= 2,
+	herbPantry			= 3,
+	waitingPantrySelect	= 4,
+	waitingIng1Select	= 5, --Text object has been selected, waiting for player to find ingredient
+	ingredientSelected	= 6,
+	dragging			= 7, --Player is dragging ingredient
+	waitingFire			= 8, --All staging area slots are full, waiting for player to select "Fire It!"
+	levelOver			= 9 --Level has ended
 }
 
--- The game scene
+
+-- The game scenes
 gameScene = nil
 
 -- locals
@@ -92,24 +100,126 @@ local update = function(event)
 	explosion.updateExplosions()
 end --]]
 
+function ProduceButtonTouched(event)
+	pantryType = "produce"
+	if (event.phase == "ended") then
+		--tween:to(MeatButton, {alpha=0, delay=0.08, time=0.25, easing=ease.expIn})
+		--tween:to(HerbButton, {alpha=0, delay=0.08, time=0.25, easing=ease.expIn})
+		tween:to(produceButton, {alpha=0, time=0.5, easing=ease.expIn, onComplete=ProducePantry})
+	end
+end
+
+function ProducePantry(event)
+	-- reset menu
+	--oldGameState = gameState
+	--gameState = gameStates.producePantry
+	tween:to(produceButton, {alpha=1, time=0.5})
+	switchToScene("produceScene")
+end
+
+function MeatButtonTouched(event)
+	pantryType = "meat"
+	if (event.phase == "ended") then
+		--tween:to(ProduceButton, {alpha=0, delay=0.08, time=0.25, easing=ease.expIn})
+		--tween:to(HerbButton, {alpha=0, delay=0.08, time=0.25, easing=ease.expIn})
+		tween:to(meatButton, {alpha=0, time=0.5, easing=ease.expIn, onComplete=MeatPantry})
+	end
+end
+
+function MeatPantry(event)
+	tween:to(meatButton, {alpha=1, time=0.5})
+	switchToScene("meatScene")
+end
+
+function HerbButtonTouched(event)
+	pantryType = "herb"
+	if (event.phase == "ended") then
+		--tween:to(MeatButton, {alpha=0, delay=0.08, time=0.25, easing=ease.expIn})
+		--tween:to(ProduceButton, {alpha=0, delay=0.08, time=0.25, easing=ease.expIn})
+		tween:to(herbButton, {alpha=0, time=0.5, easing=ease.expIn, onComplete=HerbPantry})
+	end
+end
+
+function HerbPantry(event)
+	tween:to(herbButton, {alpha=1, time=0.5})
+	switchToScene("herbScene")
+end
+
+function returnFromPantry()
+	oldGameState = gameState
+	gameState = gameStates.waitingPantrySelect
+end
+
 function initUI()
-	-- Create ingredient sprites
-	-- Produce
-	--[[*****!!!!!This is a rather hamfisted approach of creating these sprites, 
-	in the future we will need some way of telling the game which ingredients 
-	to pick and where to place them by reading an external file of some sort (xml?)!!!!!*****--]]
-
-	--[[ Create game background  (Should be done in level.Load())
-	local background = director:createSprite(director.displayCenterX, director.displayCenterY, "textures/game_bg.png")
-	background.xAnchor = 0.5
-	background.yAnchor = 0.5
+	-- load background, which is specific to level.
+	local bg = director:createSprite(director.displayCenterX, director.displayCenterY, "textures/backgrounds/" .. levelIndex .. "_BG.png")
+	bg.xAnchor = 0.5
+	bg.yAnchor = 0.5
 	-- Fit background to screen size
-	local bg_width, bg_height = background:getAtlas():getTextureSize()
-	background.xScale = director.displayWidth / bg_width
-	background.yScale = director.displayHeight / bg_height
-	--]]
+	local bg_width, bg_height = bg:getAtlas():getTextureSize()
+	bg.xScale = director.displayWidth / bg_width
+	bg.yScale = director.displayHeight / bg_height
 
-	level.Load(fontScale, uiYPosition, actualFontHeight, defaultFont)
+	levelName = director:createLabel({
+		x = 20 * fontScale, 
+		y = uiYPosition - 20 * fontScale,
+		w = director.displayWidth,
+		h = actualFontHeight,
+		text=level.name, 
+		hAlignment="left", 
+		vAlignment="top",
+		font=defaultFont,
+		textXScale = fontScale,
+		textYScale = fontScale,
+		color = color.red
+	})
+
+	-- Level Timer
+	timerLabelText = director:createLabel({
+		x = director.displayWidth - 100 * fontScale, 
+		y = uiYPosition - 20 * fontScale,
+		w = director.displayWidth, 
+		h = actualFontHeight,
+		hAlignment = "left", 
+		vAlignment = "top",
+		font = defaultFont,
+		text = "Time",
+		textXScale = fontScale,
+		textYScale = fontScale,
+		color = color.red
+		})
+
+	timerLabel = director:createLabel({
+		x = -10 * fontScale, 
+		y = uiYPosition - 22 * fontScale,
+		w = director.displayWidth, 
+		h = actualFontHeight,
+		hAlignment="right", 
+		vAlignment="top",
+		text="",
+		font=defaultFont,
+		textXScale = fontScale,
+		textYScale = fontScale,
+		color = color.black
+		})
+
+	produceButton = director:createSprite({x=58, y=248, xAnchor=0.5, yAnchor=0.5,
+										   xScale=0.5, yScale=0.5,
+										   source="textures/icons/PantryBtn_Pro.png"
+										 })
+	produceButton:addEventListener("touch", ProduceButtonTouched)
+
+	meatButton = director:createSprite({x=160, y=248, xAnchor=0.5, yAnchor=0.5,
+									    xScale=0.5,yScale=0.5,
+									    source="textures/icons/PantryBtn_Meat.png"
+									  })
+	meatButton:addEventListener("touch", MeatButtonTouched)
+	
+	herbButton = director:createSprite({x=262, y=248, xAnchor=0.5, yAnchor=0.5,
+									    xScale=0.5,yScale=0.5,
+									    source="textures/icons/PantryBtn_Herbs.png"
+									  })
+	herbButton:addEventListener("touch", HerbButtonTouched)--]]
 
 	-- Recipe name at top of screen (should be done in level.Load())
 	
@@ -146,6 +256,8 @@ function init()
 	-- create a scene via the director to contain the main game view
 	gameScene = director:createScene()
 
+	initUI()
+	
 	-- Initialize audio
 	-- initAudio() !!!!*****A yet-to-be-created funtion*****!!!!!
 
@@ -158,18 +270,19 @@ function init()
 	--initialze level information such as Level name, recipes and ingredients
 	level.init(levelIndex)
 	
+	producePantry.init()
+	meatPantry.init()
+	herbPantry.init()
 	-- Create Ingredient grid
 	--ingredientGrid
 
 	-- initialize interface
-	initUI()
 
 	-- create pause menu
 	--doesn't exist yet but.. pauseMenu.init()
-
+	
 	-- create main menu
 	mainMenu.init()
-
 	--Add event touch and update handlers
 	--!!!!!*****WE'LL NEED THESE AT SOME POINT*****!!!!!
 	--system:addEventListener("touch", touch)

@@ -1,0 +1,744 @@
+-- START TRACE TO FILE --
+tracing to: ''
+MarmaladeSDK v7.1.0 [358387] (S3E Loader v4.36.0)
+Copyright (C) 2001-2011 Ideaworks3D Ltd
+System Info:
+ OS           : WINDOWS (3)
+ OS Version   : Windows 6.1 (6.1)
+ Device ID    : Windows Simulator (0x1)
+ Device Class : WINDOWS_GENERIC (3000)
+ Phone Number : 0044123456789
+ Unique ID    : SIMULATOR_ID
+ Device Name  : My Computer
+ Memory       : 1048576KiB
+22/04/14 12:24:36.886: [0xa48] DEVICE: Initialising FIBRE
+22/04/14 12:24:36.887: [0xa48] DEVICE: Initialising THREAD
+22/04/14 12:24:36.889: [0xa48] THREAD: s3eThreadCreateMain
+22/04/14 12:24:36.896: [0xfa0] DEVICE: Initialising SURFACE
+22/04/14 12:24:36.897: [0xfa0] SURFACE: s3eSurfaceSetup: PixelType=RGB888, pitch=0, ptr=0x00000000, blit=0
+22/04/14 12:24:36.899: [0xfa0] SURFACE: s3eSurfaceSetup: matches native type
+22/04/14 12:24:36.900: [0xfa0] SURFACE: s3eSurfaceSetup: no user surface needed
+22/04/14 12:24:36.901: [0xfa0] SURFACE: done s3eSurfaceInit: 800x600 p:1600 (800x600 p:1600) o:0
+22/04/14 12:24:36.903: [0xfa0] DEVICE: Initialising EXT
+22/04/14 12:24:36.905: [0xfa0] EXT: registering extension: s3eLibrary [0xe6dd6ce5]
+22/04/14 12:24:36.906: [0xfa0] EXT: registering extension: s3eExtLoadLibaray [0xf23d6d85]
+22/04/14 12:24:36.907: [0xfa0] EXT: registering extension: s3eCamera [0xa3e23039]
+22/04/14 12:24:36.909: [0xfa0] EXT: registering extension: s3eWindow [0xd31aa8a8]
+22/04/14 12:24:36.910: [0xfa0] EXT: registering extension: s3eVFS [0x17f48c9f]
+22/04/14 12:24:36.912: [0xfa0] EXT: registering extension: s3eContacts [0x5e39d2af]
+22/04/14 12:24:36.913: [0xfa0] EXT: registering extension: s3eSoundRecord [0x579dbf78]
+22/04/14 12:24:36.914: [0xfa0] EXT: registering extension: s3eTouchpad [0x1dbd7ce8]
+22/04/14 12:24:36.916: [0xfa0] EXT: registering extension: s3eDebugHeap [0xc667a795]
+22/04/14 12:24:36.917: [0xfa0] EXT: registering extension: s3eExtDebugHeap [0xff96de46]
+22/04/14 12:24:36.919: [0xfa0] EXT: registering extension: s3eClipboard [0xd68f3420]
+22/04/14 12:24:36.920: [0xfa0] EXT: registering extension: s3eOSExec [0xc121bcf7]
+22/04/14 12:24:36.922: [0xfa0] EXT: registering extension: s3eExtOSExec [0x20380948]
+22/04/14 12:24:36.923: [0xfa0] EXT: registering extension: s3eEval [0x167d1038]
+22/04/14 12:24:36.925: [0xfa0] EXT: registering extension: s3eExtEval [0xf0421449]
+22/04/14 12:24:36.927: [0xfa0] EXT: registering extension: s3eHighResTimer [0x41f2dedb]
+22/04/14 12:24:36.928: [0xfa0] EXT: registering extension: s3eOSReadString [0x9fe3ea45]
+22/04/14 12:24:36.930: [0xfa0] EXT: registering extension: s3eCameraCapture [0xd36aceed]
+22/04/14 12:24:36.931: [0xfa0] EXT: registering extension: s3eTestEmulatorConfig [0x4a0d0a4f]
+22/04/14 12:24:36.933: [0xfa0] EXT: registering extension: s3eThread [0xcc0b4a28]
+22/04/14 12:24:36.934: [0xfa0] EXT: registering extension: s3eCompass [0x40d632c6]
+22/04/14 12:24:36.936: [0xfa0] EXT: registering extension: Compass [0xd3653f1b]
+22/04/14 12:24:36.937: [0xfa0] EXT: registering extension: s3eSocketOpt [0x09cdcdec]
+22/04/14 12:24:36.939: [0xfa0] EXT: registering extension: s3eExtSocketOpt [0x42fd049d]
+22/04/14 12:24:36.948: [0xfa0] EXT: registering extension: s3eImagePicker [0xd2fc1d51]
+22/04/14 12:24:36.950: [0xfa0] EXT: registering extension: s3eTest [0x168503f0]
+22/04/14 12:24:36.951: [0xfa0] EXT: registering extension: s3eSMS [0x17f480c3]
+22/04/14 12:24:36.953: [0xfa0] EXT: registering extension: s3eMetrics [0x2bc8e047]
+22/04/14 12:24:36.954: [0xfa0] EXT: registering extension: Metrics [0xbe57ec9c]
+22/04/14 12:24:36.956: [0xfa0] EXT: registering extension: s3eLocation [0x91944229]
+22/04/14 12:24:36.957: [0xfa0] EXT: registering extension: Location [0x7604d91e]
+22/04/14 12:24:36.959: [0xfa0] EXT: registering extension: Win32Surface [0x909755c1]
+22/04/14 12:24:36.960: [0xfa0] EXT: registering extension: Win32UIProcessMessage [0x48f2a5ba]
+22/04/14 12:24:36.962: [0xfa0] EXT: registering extension: Win32DataDirChange [0xbfcfc057]
+22/04/14 12:24:36.964: [0xfa0] DEVICE: Initialising CONFIG
+22/04/14 12:24:36.965: [0xfa0] DEVICE: Initialising TIMER
+22/04/14 12:24:36.967: [0xfa0] DEVICE: Initialising COMPRESSION
+22/04/14 12:24:36.968: [0xfa0] DEVICE: DeviceInit done: services=0x0a216148
+22/04/14 12:24:36.970: [0xfa0] EXT: s3eExtGetHash: 0xd31aa8a8 [0x00000000 size=0]
+22/04/14 12:24:36.971: [0xfa0] EXT: initializing extension: s3eWindow
+22/04/14 12:24:36.973: [0xfa0] EXT: initializing extension: s3eWindow 0x518c5c90
+22/04/14 12:24:36.974: [0xfa0] DEVICE: SetupPaths: NULL
+22/04/14 12:24:36.976: [0xfa0] LOADER: ParseCommandLineData [-via:"c:\ChefTeam\build_temp\ChefTeam_vc10_debug.via"]
+22/04/14 12:24:36.977: [0xfa0] LOADER: setting [commandline]  via=c:\ChefTeam\build_temp\ChefTeam_vc10_debug.via
+22/04/14 12:24:36.979: [0xfa0] LOADER: parsing via file: c:\ChefTeam\build_temp\ChefTeam_vc10_debug.via
+22/04/14 12:24:36.981: [0xfa0] FILE: s3eFileOpen('c:\ChefTeam\build_temp\ChefTeam_vc10_debug.via', 'r') succeeded, id=1368907520 p=0x5197df00
+22/04/14 12:24:36.982: [0xfa0] LOADER: reading 898 bytes from via files
+22/04/14 12:24:36.984: [0xfa0] FILE: s3eFileClose h=0x5197df00
+22/04/14 12:24:36.985: [0xfa0] LOADER: ParseCommandLineData [-via:"c:\ChefTeam\build_temp\ChefTeam_vc10_debug.via" --dll="c:\ChefTeam\build_temp\Debug_ChefTeam_VC10_x86\ChefTeam.s86"
+--data="c:\ChefTeam\resources"
+--checks3edir="1"
+--app-icf1="c:/ChefTea
+22/04/14 12:24:36.987: [0xfa0] LOADER: setting [commandline]  via=c:\ChefTeam\build_temp\ChefTeam_vc10_debug.via
+22/04/14 12:24:36.988: [0xfa0] LOADER: setting [commandline]  dll=c:\ChefTeam\build_temp\Debug_ChefTeam_VC10_x86\ChefTeam.s86
+22/04/14 12:24:36.990: [0xfa0] LOADER: setting [commandline]  data=c:\ChefTeam\resources
+22/04/14 12:24:36.991: [0xfa0] LOADER: setting [commandline]  checks3edir=1
+22/04/14 12:24:36.993: [0xfa0] LOADER: setting [commandline]  app-icf1=c:/ChefTeam/resources/common.icf
+22/04/14 12:24:36.995: [0xfa0] LOADER: setting [commandline]  app-icf2=c:/ChefTeam/resources/app.icf
+22/04/14 12:24:36.996: [0xfa0] LOADER: setting [commandline]  win32-ext-dll1=c:/marmalade/7.1/extensions/s3ewebview/lib/win32/s3eWebView.dll
+22/04/14 12:24:36.998: [0xfa0] LOADER: setting [commandline]  win32-ext-dll2=c:/marmalade/7.1/extensions/s3eflurry/lib/win32/s3eFlurry.dll
+22/04/14 12:24:36.999: [0xfa0] LOADER: setting [commandline]  config-txt1=c:/marmalade/7.1/modules/iwbilling/docs/billing.config.txt
+22/04/14 12:24:37.001: [0xfa0] LOADER: setting [commandline]  config-txt2=c:/marmalade/7.1/modules/iwgl/docs/iwgl.config.txt
+22/04/14 12:24:37.002: [0xfa0] LOADER: setting [commandline]  config-txt3=c:/marmalade/7.1/modules/iwutil/docs/iwutil.config.txt
+22/04/14 12:24:37.004: [0xfa0] LOADER: setting [commandline]  config-txt4=c:/marmalade/7.1/modules/third_party/cocos2dx/cocos2dx/proj.marmalade/cocos2dx.config.txt
+22/04/14 12:24:37.006: [0xfa0] LOADER: setting [commandline]  config-txt5=c:/marmalade/7.1/quick/docs/quick.config.txt
+22/04/14 12:24:37.007: [0xfa0] LOADER: setting [commandline]  config-txt6=c:/marmalade/7.1/s3e/s3e.config.txt
+22/04/14 12:24:37.009: [0xfa0] LOADER: setting [commandline]  config-txt7=c:/marmalade/7.1/s3e\s3e.config.txt
+22/04/14 12:24:37.011: [0xfa0] LOADER: setting [commandline]  s3e-dir=c:/marmalade/7.1/s3e
+22/04/14 12:24:37.012: [0xfa0] FILE: new filesystem: drive=0 type=0 ro=1 name=rom://
+22/04/14 12:24:37.014: [0xfa0] FILE: fs[00]: system[rom://] 'c:\ChefTeam\resources'
+22/04/14 12:24:37.016: [0xfa0] FILE: fs[03]: system[raw://] ''
+22/04/14 12:24:37.017: [0xfa0] FILE: listed 2 active filesystems
+22/04/14 12:24:37.019: [0xfa0] FILE: new filesystem: drive=1 type=0 ro=0 name=ram://
+22/04/14 12:24:37.021: [0xfa0] FILE: fs[00]: system[rom://] 'c:\ChefTeam\resources'
+22/04/14 12:24:37.022: [0xfa0] FILE: fs[01]: system[ram://] 'c:\ChefTeam\resources-ram'
+22/04/14 12:24:37.024: [0xfa0] FILE: fs[03]: system[raw://] ''
+22/04/14 12:24:37.025: [0xfa0] FILE: listed 3 active filesystems
+22/04/14 12:24:37.067: [0xfa0] FILE: new filesystem: drive=0 type=0 ro=1 name=rom://
+22/04/14 12:24:37.069: [0xfa0] FILE: new filesystem: drive=1 type=0 ro=0 name=ram://
+22/04/14 12:24:37.071: [0xfa0] LOADER: Using data directory c:\ChefTeam\resources as ROM drive
+22/04/14 12:24:37.073: [0xfa0] LOADER: Using directory c:\ChefTeam\resources-ram as RAM drive
+22/04/14 12:24:37.075: [0xfa0] FILE: s3eFileOpen('raw://c:/marmalade/7.1/modules/iwbilling/docs/billing.config.txt', 'r') succeeded, id=1000 p=0x5197f57c
+22/04/14 12:24:37.077: [0xfa0] FILE: s3eFileClose h=0x5197f57c
+22/04/14 12:24:37.080: [0xfa0] FILE: s3eFileOpen('raw://c:/marmalade/7.1/modules/iwgl/docs/iwgl.config.txt', 'r') succeeded, id=1001 p=0x5197f698
+22/04/14 12:24:37.081: [0xfa0] FILE: s3eFileClose h=0x5197f698
+22/04/14 12:24:37.084: [0xfa0] FILE: s3eFileOpen('raw://c:/marmalade/7.1/modules/iwutil/docs/iwutil.config.txt', 'r') succeeded, id=1002 p=0x5197f7b4
+22/04/14 12:24:37.085: [0xfa0] FILE: s3eFileClose h=0x5197f7b4
+22/04/14 12:24:37.088: [0xfa0] FILE: s3eFileOpen('raw://c:/marmalade/7.1/modules/third_party/cocos2dx/cocos2dx/proj.marmalade/cocos2dx.config.txt', 'r') succeeded, id=1003 p=0x5197f8d0
+22/04/14 12:24:37.089: [0xfa0] FILE: s3eFileClose h=0x5197f8d0
+22/04/14 12:24:37.092: [0xfa0] FILE: s3eFileOpen('raw://c:/marmalade/7.1/quick/docs/quick.config.txt', 'r') succeeded, id=1004 p=0x5197f9ec
+22/04/14 12:24:37.093: [0xfa0] FILE: s3eFileClose h=0x5197f9ec
+22/04/14 12:24:37.096: [0xfa0] FILE: s3eFileOpen('raw://c:/marmalade/7.1/s3e/s3e.config.txt', 'r') succeeded, id=1005 p=0x5197fb08
+22/04/14 12:24:37.102: [0xfa0] FILE: s3eFileClose h=0x5197fb08
+22/04/14 12:24:37.104: [0xfa0] FILE: s3eFileOpen('raw://c:/marmalade/7.1/s3e\s3e.config.txt', 'r') succeeded, id=1006 p=0x5197fc24
+22/04/14 12:24:37.109: [0xfa0] FILE: s3eFileClose h=0x5197fc24
+22/04/14 12:24:37.112: [0xfa0] FILE: s3eFileOpen('raw://c:\marmalade\7.1\s3e/s3e.icf', 'rb') succeeded, id=1007 p=0x5197fd40
+22/04/14 12:24:37.114: [0xfa0] LOADER: Loading config from: c:\marmalade\7.1\s3e/s3e.icf
+22/04/14 12:24:37.116: [0xfa0] FILE: s3eFileClose h=0x5197fd40
+22/04/14 12:24:37.118: [0xfa0] LOADER: Loading app-icf from command line specified location c:/ChefTeam/resources/common.icf
+22/04/14 12:24:37.121: [0xfa0] FILE: s3eFileOpen('raw://c:/ChefTeam/resources/common.icf', 'rb') succeeded, id=1008 p=0x5197fe5c
+22/04/14 12:24:37.122: [0xfa0] LOADER: Loading config from: raw://c:/ChefTeam/resources/common.icf
+22/04/14 12:24:37.124: [0xfa0] FILE: s3eFileClose h=0x5197fe5c
+22/04/14 12:24:37.127: [0xfa0] FILE: s3eFileOpen('raw://c:/ChefTeam/resources/app.icf', 'rb') succeeded, id=1009 p=0x5197ff78
+22/04/14 12:24:37.128: [0xfa0] LOADER: Loading config from: raw://c:/ChefTeam/resources/app.icf
+22/04/14 12:24:37.130: [0xfa0] FILE: s3eFileClose h=0x5197ff78
+22/04/14 12:24:37.132: [0xfa0] LOADER: ParseCommandLineData [-via:"c:\ChefTeam\build_temp\ChefTeam_vc10_debug.via"]
+22/04/14 12:24:37.133: [0xfa0] LOADER: setting [commandline]  via=c:\ChefTeam\build_temp\ChefTeam_vc10_debug.via
+22/04/14 12:24:37.553: [0xfa0] SPLASH: displaying debug splash-screen
+22/04/14 12:24:37.557: [0xfa0] SPLASH: No splash screen specified
+22/04/14 12:24:37.574: [0xfa0] TOUCHPAD: Found touchpad size 0 0
+COCOS2DX LOG: cocos2d: cocos2d-2.1beta3-x-2.1.0
+22/04/14 12:24:39.651: [0xfa0] IW_GL: EGL: eglGetDisplay returned 07B62E60
+22/04/14 12:24:39.686: [0xfa0] IW_GL: eglInitialise succeeded - version 1.4
+22/04/14 12:24:39.688: [0xfa0] IW_GL: S3E_EGL_VERSION: 0104
+22/04/14 12:24:39.690: [0xfa0] IW_GL: S3E_GL_VERSION: 0200
+22/04/14 12:24:39.692: [0xfa0] IW_GL: EGL_VENDOR: Google Inc.
+22/04/14 12:24:39.695: [0xfa0] IW_GL: EGL_VERSION: 1.4 (ANGLE 1.0.0.1275)
+22/04/14 12:24:39.697: [0xfa0] IW_GL:     EGL_EXT_create_context_robustness
+22/04/14 12:24:39.699: [0xfa0] IW_GL:     EGL_ANGLE_d3d_share_handle_client_buffer
+22/04/14 12:24:39.701: [0xfa0] IW_GL:     EGL_ANGLE_query_surface_pointer
+22/04/14 12:24:39.703: [0xfa0] IW_GL:     EGL_ANGLE_surface_d3d_texture_2d_share_handle
+22/04/14 12:24:39.705: [0xfa0] IW_GL:     EGL_NV_post_sub_buffer
+22/04/14 12:24:39.707: [0xfa0] GL_CORE: rejecting config 0: EGL_DEPTH_SIZE < 16
+22/04/14 12:24:39.709: [0xfa0] GL_CORE: rejecting config 4: EGL_CONFIG_CAVEAT == EGL_SLOW_CONFIG
+22/04/14 12:24:39.711: [0xfa0] GL_CORE: rejecting config 5: EGL_CONFIG_CAVEAT == EGL_SLOW_CONFIG
+22/04/14 12:24:39.713: [0xfa0] GL_CORE: rejecting config 6: EGL_CONFIG_CAVEAT == EGL_SLOW_CONFIG
+22/04/14 12:24:39.715: [0xfa0] GL_CORE: rejecting config 7: EGL_CONFIG_CAVEAT == EGL_SLOW_CONFIG
+22/04/14 12:24:39.717: [0xfa0] GL_CORE: rejecting config 8: EGL_CONFIG_CAVEAT == EGL_SLOW_CONFIG
+22/04/14 12:24:39.719: [0xfa0] GL_CORE: rejecting config 9: EGL_CONFIG_CAVEAT == EGL_SLOW_CONFIG
+22/04/14 12:24:39.720: [0xfa0] GL_CORE: rejecting config 10: EGL_CONFIG_CAVEAT == EGL_SLOW_CONFIG
+22/04/14 12:24:39.722: [0xfa0] GL_CORE: rejecting config 11: EGL_CONFIG_CAVEAT == EGL_SLOW_CONFIG
+22/04/14 12:24:39.724: [0xfa0] GL_CORE: EGL: Chose EGL_CONFIG_ID 3
+22/04/14 12:24:39.740: [0xfa0] IW_GL: GL_VENDOR: Google Inc.
+22/04/14 12:24:39.742: [0xfa0] IW_GL: GL_RENDERER: ANGLE (NVIDIA GeForce GTX 580)
+22/04/14 12:24:39.744: [0xfa0] IW_GL: GL_VERSION: OpenGL ES 2.0 (ANGLE 1.0.0.1275)
+22/04/14 12:24:39.746: [0xfa0] IW_GL: GL properties reported by driver:
+22/04/14 12:24:39.748: [0xfa0] IW_GL:     GL_MAX_COMBINED_TEXTURE_IMAGE_UNITS: 20
+22/04/14 12:24:39.750: [0xfa0] IW_GL:     GL_SHADER_COMPILER: 1
+22/04/14 12:24:39.751: [0xfa0] IW_GL:     GL_MAX_VERTEX_ATTRIBS: 16
+22/04/14 12:24:39.753: [0xfa0] IW_GL:     GL_MAX_VERTEX_UNIFORM_VECTORS: 254
+22/04/14 12:24:39.755: [0xfa0] IW_GL:     GL_MAX_VARYING_VECTORS: 10
+22/04/14 12:24:39.757: [0xfa0] IW_GL:     GL_MAX_TEXTURE_IMAGE_UNITS: 16
+22/04/14 12:24:39.759: [0xfa0] IW_GL:     GL_MAX_VERTEX_TEXTURE_IMAGE_UNITS: 4
+22/04/14 12:24:39.760: [0xfa0] IW_GL:     GL_MAX_FRAGMENT_UNIFORM_VECTORS: 221
+22/04/14 12:24:39.762: [0xfa0] IW_GL:     GL_MAX_CUBE_MAP_TEXTURE_SIZE: 16384
+22/04/14 12:24:39.764: [0xfa0] IW_GL:     GL_IMPLEMENTATION_COLOR_READ_FORMAT: GL_RGB
+22/04/14 12:24:39.765: [0xfa0] IW_GL:     GL_IMPLEMENTATION_COLOR_READ_TYPE: GL_UNSIGNED_SHORT_5_6_5
+22/04/14 12:24:39.767: [0xfa0] IW_GL:     GL_MAX_RENDERBUFFER_SIZE: 16384
+22/04/14 12:24:39.769: [0xfa0] IW_GL:     GL_POINT_SIZE_MAX: -1
+22/04/14 12:24:39.771: [0xfa0] IW_GL:     GL_MAX_TEXTURE_SIZE: 16384
+22/04/14 12:24:39.773: [0xfa0] IW_GL:     GL_MAX_VIEWPORT_DIMS: (16384, 16384)
+22/04/14 12:24:39.775: [0xfa0] IW_GL: Supported GL_EXTENSIONS:
+22/04/14 12:24:39.777: [0xfa0] IW_GL:     GL_OES_packed_depth_stencil
+22/04/14 12:24:39.779: [0xfa0] IW_GL:     GL_OES_element_index_uint
+22/04/14 12:24:39.781: [0xfa0] IW_GL:     GL_OES_texture_half_float_linear
+22/04/14 12:24:39.782: [0xfa0] IW_GL:     GL_NV_fence
+22/04/14 12:24:39.784: [0xfa0] IW_GL:     GL_EXT_read_format_bgra
+22/04/14 12:24:39.786: [0xfa0] IW_GL:     GL_OES_get_program_binary
+22/04/14 12:24:39.788: [0xfa0] IW_GL:     GL_OES_rgb8_rgba8
+22/04/14 12:24:39.790: [0xfa0] IW_GL:     GL_EXT_texture_compression_dxt1
+22/04/14 12:24:39.791: [0xfa0] IW_GL:     GL_ANGLE_texture_compression_dxt3
+22/04/14 12:24:39.793: [0xfa0] IW_GL:     GL_ANGLE_texture_compression_dxt5
+22/04/14 12:24:39.795: [0xfa0] IW_GL:     GL_ARB_texture_env_combine
+22/04/14 12:24:39.797: [0xfa0] IW_GL:     GL_OES_texture_npot
+22/04/14 12:24:39.798: [0xfa0] IW_GL:     GL_EXT_texture_format_BGRA8888
+22/04/14 12:24:39.800: [0xfa0] IW_GL:     GL_OES_texture_half_float
+22/04/14 12:24:39.802: [0xfa0] IW_GL:     GL_ANGLE_framebuffer_multisample
+22/04/14 12:24:39.804: [0xfa0] IW_GL:     GL_ANGLE_framebuffer_blit
+22/04/14 12:24:39.805: [0xfa0] IW_GL:     GL_OES_standard_derivatives
+22/04/14 12:24:39.807: [0xfa0] IW_GL:     GL_OES_texture_float
+22/04/14 12:24:39.809: [0xfa0] IW_GL:     GL_OES_texture_float_linear
+22/04/14 12:24:39.811: [0xfa0] IW_GL:     GL_EXT_texture_filter_anisotropic
+ERROR: S3E_FILE_ERR_NOT_FOUND in s3eFileOpen - Path arial.ttf not found
+ERROR: S3E_FILE_ERR_NOT_FOUND in s3eFileOpen - Path fonts/arial.ttf not found
+ERROR: S3E_FILE_ERR_NOT_FOUND in s3eFileOpen - Path fonts/marker felt.ttf not found
+ERROR: S3E_FILE_ERR_NOT_FOUND in s3eFileOpen - Path arial.ttf not found
+ERROR: S3E_FILE_ERR_NOT_FOUND in s3eFileOpen - Path fonts/arial.ttf not found
+ERROR: S3E_FILE_ERR_NOT_FOUND in s3eFileOpen - Path fonts/marker felt.ttf not found
+ERROR: S3E_FILE_ERR_NOT_FOUND in s3eFileOpen - Path arial.ttf not found
+ERROR: S3E_FILE_ERR_NOT_FOUND in s3eFileOpen - Path fonts/arial.ttf not found
+ERROR: S3E_FILE_ERR_NOT_FOUND in s3eFileOpen - Path fonts/marker felt.ttf not found
+
+
+QUICKCPP LOG: Marmalade Quick 1.1
+QUICKCPP LOG: Loading app configuration...
+QUICKCPP LOG: Loading Quick engine...
+COCOS2DX LOG: cocos2d: GL_VENDOR:     Google Inc.
+COCOS2DX LOG: cocos2d: GL_RENDERER:   ANGLE (NVIDIA GeForce GTX 580)
+COCOS2DX LOG: cocos2d: GL_VERSION:    OpenGL ES 2.0 (ANGLE 1.0.0.1275)
+COCOS2DX LOG: cocos2d: GL_MAX_TEXTURE_SIZE: 16384
+COCOS2DX LOG: cocos2d: GL_MAX_TEXTURE_UNITS: 20
+COCOS2DX LOG: cocos2d: GL supports PVRTC: NO
+COCOS2DX LOG: cocos2d: GL supports BGRA8888 textures: NO
+COCOS2DX LOG: cocos2d: GL supports NPOT textures: YES
+COCOS2DX LOG: cocos2d: GL supports discard_framebuffer: NO
+COCOS2DX LOG: cocos2d: GL supports shareable VAO: NO
+COCOS2DX LOG: cocos2d: compiled with Profiling Support: NO
+QUICKCPP LOG: Loading app...
+COCOS2DX LOG: cocos2d: padding: 0,0,0,0
+COCOS2DX LOG: cocos2d: padding: 0,0,0,0
+recipes/Green Beans.txt
+recipes/Caesar Salad.txt
+recipes/Margherita Flatbread Pizza.txt
+recipes/Ramen.txt
+!ENTERED LOAD PANTRY!
+!!produce!!
+::Lemon
+Lemon produce
+Loading Ingredient
+!!produce!!
+Lemon::Romaine_Lettuce
+Romaine_Lettuce produce
+Loading Ingredient
+!!produce!!
+Lemon::Olive_Oil
+Romaine_Lettuce::Olive_Oil
+Olive_Oil produce
+Loading Ingredient
+!!produce!!
+Lemon::Garlic
+Romaine_Lettuce::Garlic
+Olive_Oil::Garlic
+Garlic produce
+Loading Ingredient
+!!produce!!
+Lemon::Lemon
+BREAK
+!!produce!!
+Lemon::Dough
+Romaine_Lettuce::Dough
+Olive_Oil::Dough
+Garlic::Dough
+Dough produce
+Loading Ingredient
+!!produce!!
+Lemon::Crushed_Tomatoes
+Romaine_Lettuce::Crushed_Tomatoes
+Olive_Oil::Crushed_Tomatoes
+Garlic::Crushed_Tomatoes
+Dough::Crushed_Tomatoes
+Crushed_Tomatoes produce
+Loading Ingredient
+!!produce!!
+Lemon::Garlic
+Romaine_Lettuce::Garlic
+Olive_Oil::Garlic
+Garlic::Garlic
+BREAK
+!!produce!!
+Lemon::Ramen_Noodles
+Romaine_Lettuce::Ramen_Noodles
+Olive_Oil::Ramen_Noodles
+Garlic::Ramen_Noodles
+Dough::Ramen_Noodles
+Crushed_Tomatoes::Ramen_Noodles
+Ramen_Noodles produce
+Loading Ingredient
+!!produce!!
+Lemon::Nori
+Romaine_Lettuce::Nori
+Olive_Oil::Nori
+Garlic::Nori
+Dough::Nori
+Crushed_Tomatoes::Nori
+Ramen_Noodles::Nori
+Nori produce
+Loading Ingredient
+!!produce!!
+Lemon::Scallion
+Romaine_Lettuce::Scallion
+Olive_Oil::Scallion
+Garlic::Scallion
+Dough::Scallion
+Crushed_Tomatoes::Scallion
+Ramen_Noodles::Scallion
+Nori::Scallion
+Scallion produce
+Loading Ingredient
+!!produce!!
+Lemon::Slivered_Almonds
+Romaine_Lettuce::Slivered_Almonds
+Olive_Oil::Slivered_Almonds
+Garlic::Slivered_Almonds
+Dough::Slivered_Almonds
+Crushed_Tomatoes::Slivered_Almonds
+Ramen_Noodles::Slivered_Almonds
+Nori::Slivered_Almonds
+Scallion::Slivered_Almonds
+Slivered_Almonds produce
+Loading Ingredient
+!ENTERED LOAD PANTRY!
+!!meat!!
+::Egg
+Egg meat
+Loading Ingredient
+!!meat!!
+Egg::Anchovies
+Anchovies meat
+Loading Ingredient
+!!meat!!
+Egg::Mozzarella
+Anchovies::Mozzarella
+Mozzarella meat
+Loading Ingredient
+!!meat!!
+Egg::Anchovies
+Anchovies::Anchovies
+BREAK
+!!meat!!
+Egg::Ramen_Broth
+Anchovies::Ramen_Broth
+Mozzarella::Ramen_Broth
+Ramen_Broth meat
+Loading Ingredient
+!!meat!!
+Egg::Cured_Pork_Belly
+Anchovies::Cured_Pork_Belly
+Mozzarella::Cured_Pork_Belly
+Ramen_Broth::Cured_Pork_Belly
+Cured_Pork_Belly meat
+Loading Ingredient
+!!meat!!
+Egg::Egg
+BREAK
+!!meat!!
+Egg::Butter
+Anchovies::Butter
+Mozzarella::Butter
+Ramen_Broth::Butter
+Cured_Pork_Belly::Butter
+Butter meat
+Loading Ingredient
+!ENTERED LOAD PANTRY!
+!!herb!!
+::Pepper
+Pepper herb
+Loading Ingredient
+!!herb!!
+Pepper::Basil
+Basil herb
+Loading Ingredient
+!!herb!!
+Pepper::Salt
+Basil::Salt
+Salt herb
+Loading Ingredient
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/backgrounds/1_BG.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: fonts/ComicSans24_0.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/icons/PantryBtn_Pro.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/icons/PantryBtn_Meat.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/icons/PantryBtn_Herbs.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/icons/KitchenKey.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/produce/Lemon.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/produce/Romaine_Lettuce.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/produce/Olive_Oil.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/produce/Garlic.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/produce/Dough.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/produce/Crushed_Tomatoes.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/produce/Ramen_Noodles.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/produce/Nori.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/produce/Scallion.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/produce/Slivered_Almonds.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/meat/Egg.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/meat/Anchovies.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/meat/Mozzarella.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/meat/Ramen_Broth.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/meat/Cured_Pork_Belly.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/meat/Butter.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/herb/Pepper.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/herb/Basil.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/herb/Salt.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/menu_bg.jpg
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/start.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/Multiplayer.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/Recipes.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/Option.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/backgrounds/1_BG.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: fonts/ComicSans24_0.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/icons/PantryBtn_Pro.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/icons/PantryBtn_Meat.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/icons/PantryBtn_Herbs.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/icons/KitchenKey.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/produce/Lemon.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/produce/Romaine_Lettuce.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/produce/Olive_Oil.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/produce/Garlic.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/produce/Dough.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/produce/Crushed_Tomatoes.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/produce/Ramen_Noodles.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/produce/Nori.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/produce/Scallion.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/produce/Slivered_Almonds.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/meat/Egg.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/meat/Anchovies.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/meat/Mozzarella.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/meat/Ramen_Broth.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/meat/Cured_Pork_Belly.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/meat/Butter.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/herb/Pepper.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/herb/Basil.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/herb/Salt.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/menu_bg.jpg
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/start.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/Multiplayer.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/Recipes.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/Option.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/backgrounds/1_BG.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: fonts/ComicSans24_0.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/icons/PantryBtn_Pro.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/icons/PantryBtn_Meat.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/icons/PantryBtn_Herbs.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/icons/KitchenKey.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/produce/Lemon.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/produce/Romaine_Lettuce.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/produce/Olive_Oil.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/produce/Garlic.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/produce/Dough.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/produce/Crushed_Tomatoes.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/produce/Ramen_Noodles.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/produce/Nori.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/produce/Scallion.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/produce/Slivered_Almonds.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/meat/Egg.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/meat/Anchovies.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/meat/Mozzarella.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/meat/Ramen_Broth.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/meat/Cured_Pork_Belly.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/meat/Butter.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/herb/Pepper.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/herb/Basil.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/herb/Salt.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/menu_bg.jpg
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/start.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/Multiplayer.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/Recipes.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/Option.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/backgrounds/1_BG.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: fonts/ComicSans24_0.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/icons/PantryBtn_Pro.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/icons/PantryBtn_Meat.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/icons/PantryBtn_Herbs.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/icons/KitchenKey.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/produce/Lemon.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/produce/Romaine_Lettuce.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/produce/Olive_Oil.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/produce/Garlic.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/produce/Dough.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/produce/Crushed_Tomatoes.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/produce/Ramen_Noodles.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/produce/Nori.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/produce/Scallion.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/produce/Slivered_Almonds.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/meat/Egg.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/meat/Anchovies.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/meat/Mozzarella.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/meat/Ramen_Broth.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/meat/Cured_Pork_Belly.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/meat/Butter.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/herb/Pepper.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/herb/Basil.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/herb/Salt.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/menu_bg.jpg
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/start.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/Multiplayer.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/Recipes.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/Option.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/backgrounds/1_BG.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: fonts/ComicSans24_0.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/icons/PantryBtn_Pro.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/icons/PantryBtn_Meat.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/icons/PantryBtn_Herbs.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/icons/KitchenKey.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/produce/Lemon.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/produce/Romaine_Lettuce.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/produce/Olive_Oil.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/produce/Garlic.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/produce/Dough.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/produce/Crushed_Tomatoes.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/produce/Ramen_Noodles.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/produce/Nori.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/produce/Scallion.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/produce/Slivered_Almonds.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/meat/Egg.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/meat/Anchovies.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/meat/Mozzarella.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/meat/Ramen_Broth.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/meat/Cured_Pork_Belly.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/meat/Butter.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/herb/Pepper.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/herb/Basil.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/herb/Salt.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/menu_bg.jpg
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/start.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/Multiplayer.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/Recipes.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/Option.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/backgrounds/1_BG.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: fonts/ComicSans24_0.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/icons/PantryBtn_Pro.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/icons/PantryBtn_Meat.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/icons/PantryBtn_Herbs.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/icons/KitchenKey.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/produce/Lemon.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/produce/Romaine_Lettuce.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/produce/Olive_Oil.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/produce/Garlic.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/produce/Dough.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/produce/Crushed_Tomatoes.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/produce/Ramen_Noodles.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/produce/Nori.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/produce/Scallion.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/produce/Slivered_Almonds.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/meat/Egg.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/meat/Anchovies.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/meat/Mozzarella.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/meat/Ramen_Broth.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/meat/Cured_Pork_Belly.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/meat/Butter.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/herb/Pepper.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/herb/Basil.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/herb/Salt.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/menu_bg.jpg
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/start.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/Multiplayer.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/Recipes.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/Option.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/backgrounds/1_BG.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: fonts/ComicSans24_0.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/icons/PantryBtn_Pro.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/icons/PantryBtn_Meat.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/icons/PantryBtn_Herbs.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/icons/KitchenKey.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/produce/Lemon.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/produce/Romaine_Lettuce.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/produce/Olive_Oil.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/produce/Garlic.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/produce/Dough.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/produce/Crushed_Tomatoes.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/produce/Ramen_Noodles.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/produce/Nori.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/produce/Scallion.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/produce/Slivered_Almonds.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/meat/Egg.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/meat/Anchovies.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/meat/Mozzarella.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/meat/Ramen_Broth.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/meat/Cured_Pork_Belly.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/meat/Butter.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/herb/Pepper.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/herb/Basil.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/herb/Salt.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/menu_bg.jpg
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/start.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/Multiplayer.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/Recipes.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/Option.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/backgrounds/1_BG.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: fonts/ComicSans24_0.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/icons/PantryBtn_Pro.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/icons/PantryBtn_Meat.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/icons/PantryBtn_Herbs.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/icons/KitchenKey.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/produce/Lemon.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/produce/Romaine_Lettuce.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/produce/Olive_Oil.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/produce/Garlic.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/produce/Dough.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/produce/Crushed_Tomatoes.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/produce/Ramen_Noodles.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/produce/Nori.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/produce/Scallion.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/produce/Slivered_Almonds.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/meat/Egg.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/meat/Anchovies.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/meat/Mozzarella.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/meat/Ramen_Broth.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/meat/Cured_Pork_Belly.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/meat/Butter.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/herb/Pepper.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/herb/Basil.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/herb/Salt.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/menu_bg.jpg
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/start.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/Multiplayer.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/Recipes.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/Option.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/backgrounds/1_BG.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: fonts/ComicSans24_0.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/icons/PantryBtn_Pro.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/icons/PantryBtn_Meat.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/icons/PantryBtn_Herbs.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/icons/KitchenKey.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/produce/Lemon.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/produce/Romaine_Lettuce.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/produce/Olive_Oil.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/produce/Garlic.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/produce/Dough.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/produce/Crushed_Tomatoes.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/produce/Ramen_Noodles.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/produce/Nori.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/produce/Scallion.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/produce/Slivered_Almonds.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/meat/Egg.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/meat/Anchovies.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/meat/Mozzarella.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/meat/Ramen_Broth.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/meat/Cured_Pork_Belly.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/meat/Butter.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/herb/Pepper.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/herb/Basil.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/herb/Salt.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/menu_bg.jpg
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/start.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/Multiplayer.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/Recipes.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/Option.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/backgrounds/1_BG.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: fonts/ComicSans24_0.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/icons/PantryBtn_Pro.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/icons/PantryBtn_Meat.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/icons/PantryBtn_Herbs.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/icons/KitchenKey.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/produce/Lemon.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/produce/Romaine_Lettuce.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/produce/Olive_Oil.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/produce/Garlic.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/produce/Dough.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/produce/Crushed_Tomatoes.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/produce/Ramen_Noodles.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/produce/Nori.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/produce/Scallion.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/produce/Slivered_Almonds.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/meat/Egg.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/meat/Anchovies.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/meat/Mozzarella.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/meat/Ramen_Broth.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/meat/Cured_Pork_Belly.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/meat/Butter.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/herb/Pepper.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/herb/Basil.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/herb/Salt.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/menu_bg.jpg
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/start.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/Multiplayer.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/Recipes.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/Option.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/backgrounds/1_BG.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: fonts/ComicSans24_0.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/icons/PantryBtn_Pro.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/icons/PantryBtn_Meat.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/icons/PantryBtn_Herbs.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/icons/KitchenKey.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/produce/Lemon.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/produce/Romaine_Lettuce.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/produce/Olive_Oil.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/produce/Garlic.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/produce/Dough.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/produce/Crushed_Tomatoes.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/produce/Ramen_Noodles.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/produce/Nori.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/produce/Scallion.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/produce/Slivered_Almonds.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/meat/Egg.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/meat/Anchovies.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/meat/Mozzarella.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/meat/Ramen_Broth.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/meat/Cured_Pork_Belly.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/meat/Butter.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/herb/Pepper.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/herb/Basil.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/ingredients/herb/Salt.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/menu_bg.jpg
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/start.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/Multiplayer.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/Recipes.png
+COCOS2DX LOG: cocos2d: CCTextureCache: texture: textures/Option.png
+unrequiring
+22/04/14 12:25:34.608: [0xfa0] IW_GL: Leaked Program with handle 2
+22/04/14 12:25:34.611: [0xfa0] IW_GL: Leaked Program with handle 5
+22/04/14 12:25:34.613: [0xfa0] IW_GL: Leaked Texture with handle 1
+22/04/14 12:25:34.616: [0xfa0] IW_GL: Leaked Texture with handle 2
+22/04/14 12:25:34.618: [0xfa0] IW_GL: Leaked Texture with handle 3
+22/04/14 12:25:34.620: [0xfa0] IW_GL: Leaked Texture with handle 4
+22/04/14 12:25:34.623: [0xfa0] IW_GL: Leaked Texture with handle 5
+22/04/14 12:25:34.625: [0xfa0] IW_GL: Leaked Texture with handle 6
+22/04/14 12:25:34.627: [0xfa0] IW_GL: Leaked Texture with handle 7
+22/04/14 12:25:34.629: [0xfa0] IW_GL: Leaked Texture with handle 8
+22/04/14 12:25:34.631: [0xfa0] IW_GL: Leaked Texture with handle 9
+22/04/14 12:25:34.634: [0xfa0] IW_GL: Leaked Texture with handle 10
+22/04/14 12:25:34.636: [0xfa0] IW_GL: Leaked Texture with handle 11
+22/04/14 12:25:34.638: [0xfa0] IW_GL: Leaked Texture with handle 12
+22/04/14 12:25:34.640: [0xfa0] IW_GL: Leaked Texture with handle 13
+22/04/14 12:25:34.642: [0xfa0] IW_GL: Leaked Texture with handle 14
+22/04/14 12:25:34.644: [0xfa0] IW_GL: Leaked Texture with handle 15
+22/04/14 12:25:34.646: [0xfa0] IW_GL: Leaked Texture with handle 16
+22/04/14 12:25:34.648: [0xfa0] IW_GL: Leaked Texture with handle 17
+22/04/14 12:25:34.650: [0xfa0] IW_GL: Leaked Texture with handle 18
+22/04/14 12:25:34.652: [0xfa0] IW_GL: Leaked Texture with handle 19
+22/04/14 12:25:34.654: [0xfa0] IW_GL: Leaked Texture with handle 20
+22/04/14 12:25:34.656: [0xfa0] IW_GL: Leaked Texture with handle 21
+22/04/14 12:25:34.658: [0xfa0] IW_GL: Leaked Texture with handle 22
+22/04/14 12:25:34.660: [0xfa0] IW_GL: Leaked Texture with handle 23
+22/04/14 12:25:34.662: [0xfa0] IW_GL: Leaked Texture with handle 24
+22/04/14 12:25:34.664: [0xfa0] IW_GL: Leaked Texture with handle 25
+22/04/14 12:25:34.666: [0xfa0] IW_GL: Leaked Texture with handle 26
+22/04/14 12:25:34.669: [0xfa0] IW_GL: Leaked Texture with handle 27
+22/04/14 12:25:34.671: [0xfa0] IW_GL: Leaked Texture with handle 28
+22/04/14 12:25:34.673: [0xfa0] IW_GL: Leaked Texture with handle 29
+22/04/14 12:25:34.676: [0xfa0] IW_GL: Leaked Texture with handle 30
+22/04/14 12:25:34.678: [0xfa0] IW_GL: Leaked VBO with handle 1
+22/04/14 12:25:34.680: [0xfa0] IW_GL: Leaked VBO with handle 2
+22/04/14 12:25:34.682: [0xfa0] IW_GL: Leaked VBO with handle 3
+22/04/14 12:25:34.683: [0xfa0] IW_GL: Leaked VBO with handle 4
+22/04/14 12:25:34.686: [0xfa0] IW_GL: Leaked VBO with handle 5
+22/04/14 12:25:34.688: [0xfa0] IW_GL: Leaked VBO with handle 6
+22/04/14 12:25:34.691: [0xfa0] IW_GL: Terminating EGL...
+22/04/14 12:25:34.708: [0xfa0] IW_GL: Terminating EGL... Done
+COCOS2DX LOG: cocos2d: deallocing CCDirector 066B3248
+unrequiring
+COCOS2DX LOG: cocos2d: cocos2d-2.1beta3-x-2.1.0
+COCOS2DX LOG: cocos2d: deallocing CCDirector 066B6568
+-- END TRACE --

@@ -1,0 +1,3 @@
+﻿  ChefTeam_vc10.vcxproj -> c:\ChefTeam\build_temp\Debug_ChefTeam_vc10_x86\ChefTeam.s86
+  C:\Marmalade\7.1\s3e\python\python.exe .\process_map.py "c:\ChefTeam\build_temp\Debug_ChefTeam_vc10_x86\ChefTeam.s86"
+  "c:\marmalade\7.1\s3e\bin\s3e_plink" -l "c:\ChefTeam\build_temp\Debug_ChefTeam_vc10_x86\ChefTeam.s86" 

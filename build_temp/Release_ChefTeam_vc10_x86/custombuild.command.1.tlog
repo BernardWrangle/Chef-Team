@@ -1,0 +1,2 @@
+^C:\CHEFTEAM\CHEFTEAM.MKB
+"C:\Marmalade\7.1\s3e\python\python.exe" "C:\Marmalade\7.1\s3e\makefile_builder\mkb.py" "c:/ChefTeam/ChefTeam.mkb" "--default-buildenv=vc10" --msvc-project
