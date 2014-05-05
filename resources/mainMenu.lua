@@ -43,15 +43,15 @@ function init()
 	background.yScale = director.displayHeight / 1136
 
 	-- Create Start Game button
-	playButton = director:createSprite(director.displayCenterX, 348, "textures/start.png")
+	playButton = director:createSprite(director.displayCenterX, 248, "textures/start.png")
 	playButton.xAnchor = 0.5
 	playButton.yAnchor = 0.5
-	playButton.xScale = 0.5
-	playButton.yScale = 0.5
+	playButton.xScale = 1
+	playButton.yScale = 1
 	playButton:addEventListener("touch", startGame)
 
 	-- Create Multiplayer Game button
-	playButton = director:createSprite(director.displayCenterX, 240, "textures/Multiplayer.png")
+	--[[playButton = director:createSprite(director.displayCenterX, 240, "textures/Multiplayer.png")
 	playButton.xAnchor = 0.5
 	playButton.yAnchor = 0.5
 	playButton.xScale = 0.5
@@ -72,6 +72,6 @@ function init()
 	playButton.yAnchor = 0.5
 	playButton.xScale = 0.5
 	playButton.yScale = 0.5
-	playButton:addEventListener("touch", Options)
+	playButton:addEventListener("touch", Options)--]]
 
 end

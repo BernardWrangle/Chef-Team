@@ -1,0 +1,8 @@
+name,Green Beans,
+ingredient,Butter,1 TBLS,meat,
+ingredient,Salt,1 TSP,herb,
+ingredient,Slivered_Almonds,1/4 CUP,produce,
+ingredient,Pepper,1 TSP,herb,
+ingredient,Lemon,1 WHOLE,produce,
+price,8,
+time,10,

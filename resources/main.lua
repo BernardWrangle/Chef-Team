@@ -45,10 +45,13 @@ function switchToScene(scene_name, transition_type)
 	elseif (scene_name == "options") then
 		director:moveToScene (optionsScene, {transitionType="slideInR", transitionTime=0.5})
 	elseif (scene_name == "produceScene") then
+		--level.LoadPantry("produce")
 		director:moveToScene (producePantry.produceScene, {transitionType="shrinkGrow", transitionTime=1.5})
 	elseif (scene_name == "meatScene") then
+		--level.LoadPantry("meat")
 		director:moveToScene (meatPantry.meatScene, {transitionType="shrinkGrow", transitionTime=1.5})
 	elseif (scene_name == "herbScene") then
+		--level.LoadPantry("herb")
 		director:moveToScene (herbPantry.herbScene, {transitionType="shrinkGrow", transitionTime=1.5})
 	end
 end

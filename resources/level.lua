@@ -14,117 +14,29 @@ to the next.
 module(..., package.seeall)
 
 -- OO functions
-require("class")
+--require("class")
 require("ingredient")
-require("game")
 
 -- Global vars
-name				= ""	-- name of level
-recipes				= {}	-- pool of recipes
-produceIng			= {}	-- ingredients to include in produce+grains pantry (pulled from recipes)
-herbIng				= {}	-- ingredients to include in herb+spice pantry
-meatIng				= {}	-- ingredients to include in meat+dairy pantry
-activeRecipe		= ""	-- name of the active recipe. Active recipe is one that has it's quantities in the bottom section
-background			= nil	-- background image for level
-ingredientCountY	= 3		-- total rows in pantry, will always be 3
-
--- Local
-local ingredientsGrid		-- Grid of ingredients
-local prepContainerGrid		-- Grid of preperation containers
-local ingredientCountX		= 0	-- Total columns in pantry grid (test value of 4 right now, later will be expanded)
-
--- Constants
-gridActualHeight	= 64 * ingredientCountY--[[replace with ingredient.IngredientHeight * ingredientCountY--]]
-gridOffsetX			= 41 * game.graphicScale -- Grid offset screen position on x-axis
-gridOffsetY			= 37 * game.graphicScale -- Grid offset screen position on y-axis	
-produceYPos			= 300
-herbYPos			= 230
-meatYPos			= 160
+name				= ""	-- Name of level
+recipes				= {}	-- Pool of recipes
+recipeCount			= 1		-- Number of recipes in this level (always at least 1)
+produceIng			= {}	-- Ingredients to include in produce+grains pantry (pulled from recipes)
+herbIng				= {}	-- Ingredients to include in herb+spice pantry
+meatIng				= {}	-- Ingredients to include in meat+dairy pantry
+activeRecipe		= nil	-- Active recipe
+background			= nil	-- Background image for level
+ingredientRows		= 3		-- Total rows in pantry, will always be 3
+ingredientColumns	= 0		-- Total columns in pantry grid (test value of 4 right now, later will be expanded)
+ingredients			= {}
+ingredientCount		= 0		-- Counts total number of ingredients in level
+herbCount			= 0		-- Counts total number of herb ingredients in level
+produceCount		= 0		-- Counts total number of produce ingredients in level
+meatCount			= 0		-- Counts total number of meat ingredients in level
 
 -- Level
-level = inheritsFrom(baseClass)
+level = inheritsFrom("game")
 
---[[
-Load the levels recipe tags, ingredient sprites, labels,
-pantry rows, prep area Fire It! and FX
-CAN REMOVE??
---]]
-function Load()
-	-- Load Kitchen icons
-	
-	-- Load Ingredients
-	
-	--LoadPantry()
-
-	-- Load prep area grid
-
-	-- Load produce pantry
-	
-	-- Load Tickets
-
-end
-
-function LoadPantry(type)
-	print("!ENTERED LOAD PANTRY!")
-	local ingredientXPos = 32 -- starting position of ingredients in pantry row
-	local ingredientYPos = 300
-	local Xbuffer = 64
-	local Ybuffer = 76
-	local tempList = {""}		-- Use this to keep track of loaded assets, if already in this list, then it's already been loaded
-	local tempIndex = 1
-	local rowCount = 0
-	local loaded = false
-	local tempArray = {""}
-
-	if type == "produce" then
-		tempArray = produceIng
-	end
-	if type == "meat" then
-		tempArray = meatIng
-	end
-	if type == "herb" then
-		tempArray = herbIng
-	end
-	-- Run for produce+grains
-	--if type == "produce" then
-		for key, value in pairs(tempArray) do
-			print("!!" .. type .. "!!")
-			-- Check if this ingredient has already been loaded
-			for i, j in pairs(tempList) do
-				print(j .. "::" .. value)
-				if j == value then
-					print("BREAK")
-					loaded = true
-					break
-				end
-			end
-
-			if loaded == false then
-				tempList[tempIndex] = value
-				tempIndex = tempIndex + 1
-				print(value .. " " .. type)
-				ingredient.new(value, type, ingredientXPos, ingredientYPos)
-				rowCount = rowCount + 1
-			
-				-- once we've filled a row, we want to reset our X pos and Y pos
-				--[[
-				**TO DO**
-				**NEED TO ADD A CONDITION FOR IF WE'VE FILLED AN ENTIRE 
-				**PANTRY PAGE TO CREATE A NEW PAGE AND START FILLING IT WITH 
-				**INGREDIENTS
-				--]]
-				if rowCount > 3 then
-					rowCount = 0
-					ingredientXPos = 32
-					ingredientYPos = ingredientYPos - Ybuffer
-				else
-					ingredientXPos = ingredientXPos + Xbuffer
-				end
-			end
-			loaded = false
-		end
-	--end
-end
 --[[
 A level consists of:
 -Level name, as define in level_x.txt 
@@ -133,15 +45,16 @@ A level consists of:
 function New(levelName, recipeArray)
 	name = levelName
 	background = levelName .. "_BG"
+	print(name)
 	--Initialize recipes in level
-	local produceIndex = 0
-	local herbIndex = 0
-	local meatIndex = 0
 	for key, value in pairs(recipeArray) do
 		recipe.init(value)
-		recipes[key] = recipe		   -- an array of all recipe objects in level
+		recipes[key] = recipe -- an array of all recipe objects in level
+		game.recipes[key] = recipes[key]
 		--TESTprint("key=" .. key)
-
+		print(key)
+		print(recipe.name)
+		print(recipes[key].name .. "WTF")
 		-- Initialize lists of ingredient types
 		for i, j in pairs(recipes[key].ingredients) do
 			local type = recipes[key].ingredientType[i]
@@ -149,20 +62,19 @@ function New(levelName, recipeArray)
 			
 			if type == "produce" then
 				--TESTprint("Inserting ingredient " .. j .. " into Produce array")
-				produceIng[produceIndex] = j   -- add ingredient to list
-				ingredientCountX = ingredientCountX + 1 --increase our number of ingredients in the level
-				produceIndex = produceIndex + 1
+				produceIng[produceCount] = j   -- add ingredient to list
+				produceCount = produceCount + 1
 			elseif type == "herb" then
-				herbIng[herbIndex] = j
-				ingredientCountX = ingredientCountX + 1
-				herbIndex = herbIndex + 1
+				herbIng[herbCount] = j
+				herbCount = herbCount + 1
 			elseif type == "meat" then
-				meatIng[meatIndex] = j
-				ingredientCountX = ingredientCountX + 1
-				meatIndex = meatIndex + 1
+				meatIng[meatCount] = j
+				meatCount = meatCount + 1
 			end
 		end
 	end
+	ingredientCount = meatCount + produceCount + herbCount
+	activeRecipe = recipes[1]
 end
 
 --[[init()- called from game.init(). Game controls the current level
@@ -200,8 +112,8 @@ function init(levelIndex)
 			lvlName = tempArray[2]
 		
 		elseif tempArray[1] == "recipe" then
-			recipeArray[recipeIndex] = tempArray[2]
-			recipeIndex = recipeIndex + 1
+			recipeArray[recipeCount] = tempArray[2]
+			recipeCount = recipeCount + 1
 		
 		elseif tempArray[1] == "background" then
 			background = tempArray[2]
@@ -210,9 +122,4 @@ function init(levelIndex)
 		index = 1 -- reset our index to 0 to evaluate the next line
 	end
 	New(lvlName,recipeArray)
-end
-
-function LoadIngredientSprite(ingName, type, xPos)
-	print("LOADING INGREDIENT: " .. ingName .. " AT: " .. xPos)
-	ing = director:createSprite(xPos,produceYPos,"textures/ingredients/" .. type .. "/" .. ingName .. ".png")
 end

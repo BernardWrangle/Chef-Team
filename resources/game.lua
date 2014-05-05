@@ -14,6 +14,8 @@ actualFontHeight = fontHeight * fontScale
 graphicScale = director.displayWidth / graphicDesignWidth
 defaultFont = director:createFont("fonts/ComicSans24.fnt")
 pantryType = ""
+recipes = {}
+
 --OO functions
 local class = require("class")
 require("grid")
@@ -24,6 +26,7 @@ require("level")
 require("producePantry") 
 require("meatPantry") 
 require("herbPantry") 
+require("ingredient")
 --This is used to determine which pantry to go to and which ingredients to load. Shared by Pantry.Lua and Level.Lua
 
 -- Local constants
@@ -102,7 +105,7 @@ end --]]
 
 function ProduceButtonTouched(event)
 	pantryType = "produce"
-	if (event.phase == "ended") then
+	if (event.phase == "began") then
 		--tween:to(MeatButton, {alpha=0, delay=0.08, time=0.25, easing=ease.expIn})
 		--tween:to(HerbButton, {alpha=0, delay=0.08, time=0.25, easing=ease.expIn})
 		tween:to(produceButton, {alpha=0, time=0.5, easing=ease.expIn, onComplete=ProducePantry})
@@ -119,7 +122,7 @@ end
 
 function MeatButtonTouched(event)
 	pantryType = "meat"
-	if (event.phase == "ended") then
+	if (event.phase == "began") then
 		--tween:to(ProduceButton, {alpha=0, delay=0.08, time=0.25, easing=ease.expIn})
 		--tween:to(HerbButton, {alpha=0, delay=0.08, time=0.25, easing=ease.expIn})
 		tween:to(meatButton, {alpha=0, time=0.5, easing=ease.expIn, onComplete=MeatPantry})
@@ -133,7 +136,7 @@ end
 
 function HerbButtonTouched(event)
 	pantryType = "herb"
-	if (event.phase == "ended") then
+	if (event.phase == "began") then
 		--tween:to(MeatButton, {alpha=0, delay=0.08, time=0.25, easing=ease.expIn})
 		--tween:to(ProduceButton, {alpha=0, delay=0.08, time=0.25, easing=ease.expIn})
 		tween:to(herbButton, {alpha=0, time=0.5, easing=ease.expIn, onComplete=HerbPantry})
@@ -142,6 +145,7 @@ end
 
 function HerbPantry(event)
 	tween:to(herbButton, {alpha=1, time=0.5})
+	--level.ingredient:setPantry("herb", level.herbIng) --tell our ingredients which ones to draw in the pantry
 	switchToScene("herbScene")
 end
 
@@ -159,7 +163,7 @@ function initUI()
 	local bg_width, bg_height = bg:getAtlas():getTextureSize()
 	bg.xScale = director.displayWidth / bg_width
 	bg.yScale = director.displayHeight / bg_height
-
+	
 	levelName = director:createLabel({
 		x = 20 * fontScale, 
 		y = uiYPosition - 20 * fontScale,
@@ -171,8 +175,8 @@ function initUI()
 		font=defaultFont,
 		textXScale = fontScale,
 		textYScale = fontScale,
-		color = color.red
-	})
+		color = color.black
+		})
 
 	-- Level Timer
 	timerLabelText = director:createLabel({
@@ -183,10 +187,10 @@ function initUI()
 		hAlignment = "left", 
 		vAlignment = "top",
 		font = defaultFont,
-		text = "Time",
+		text = level.activeRecipe.name,
 		textXScale = fontScale,
 		textYScale = fontScale,
-		color = color.red
+		color = color.black
 		})
 
 	timerLabel = director:createLabel({
@@ -203,76 +207,170 @@ function initUI()
 		color = color.black
 		})
 
-	produceButton = director:createSprite({x=58, y=248, xAnchor=0.5, yAnchor=0.5,
-										   xScale=0.5, yScale=0.5,
-										   source="textures/icons/PantryBtn_Pro.png"
-										 })
+	produceButton = director:createSprite({
+		x=58, y=248, 
+		xAnchor=0.5, yAnchor=0.5,
+		xScale=0.5, yScale=0.5,
+		source="textures/icons/PantryBtn_Pro.png"
+		})
 	produceButton:addEventListener("touch", ProduceButtonTouched)
 
-	meatButton = director:createSprite({x=160, y=248, xAnchor=0.5, yAnchor=0.5,
-									    xScale=0.5,yScale=0.5,
-									    source="textures/icons/PantryBtn_Meat.png"
-									  })
+	meatButton = director:createSprite({
+		x=160, y=248, 
+		xAnchor=0.5, yAnchor=0.5,
+		xScale=0.5,yScale=0.5,
+		source="textures/icons/PantryBtn_Meat.png"
+		})
 	meatButton:addEventListener("touch", MeatButtonTouched)
 	
-	herbButton = director:createSprite({x=262, y=248, xAnchor=0.5, yAnchor=0.5,
-									    xScale=0.5,yScale=0.5,
-									    source="textures/icons/PantryBtn_Herbs.png"
-									  })
-	herbButton:addEventListener("touch", HerbButtonTouched)--]]
-
+	herbButton = director:createSprite({
+		x=262, y=248, 
+		xAnchor=0.5, yAnchor=0.5,
+		xScale=0.5,yScale=0.5,
+		source="textures/icons/PantryBtn_Herbs.png"
+		})
+	herbButton:addEventListener("touch", HerbButtonTouched)
+	
+	-- Load prep area bowls
+	prepBowl1 = director:createSprite({
+		x=50, y=120, xAnchor=0.5, yAnchor=0.5,
+		zOrder=0, source="textures/objects/bowl.png"
+		})
+	prepBowl2 = director:createSprite({
+		x=158, y=120, xAnchor=0.5, yAnchor=0.5,
+		zOrder=0, source="textures/objects/bowl.png"
+		})
+	prepBowl3 = director:createSprite({
+		x=266, y=120, xAnchor=0.5, yAnchor=0.5,
+		zOrder=0, source="textures/objects/bowl.png"
+		})
+	prepBowl4 = director:createSprite({
+		x=50, y=40, xAnchor=0.5, yAnchor=0.5,
+		zOrder=0, source="textures/objects/bowl.png"
+		})
+	prepBowl5 = director:createSprite({
+		x=158, y=40, xAnchor=0.5, yAnchor=0.5,
+		zOrder=0, source="textures/objects/bowl.png"
+	    })
+	prepBowl6 = director:createSprite({
+		x=266, y=40, xAnchor=0.5, yAnchor=0.5,
+		zOrder=0, source="textures/objects/bowl.png"
+	    })
+	bowl1Text = director:createLabel({
+		x = 30 * game.fontScale, 
+		y = 150 * game.fontScale,
+		w = director.displayWidth, 
+		h = game.actualFontHeight,
+		hAlignment = "middle", 
+		vAlignment = "middle",
+		font = game.defaultFont,
+		text = level.activeRecipe.quantities[1], --*TODO* replace recipes[1] with recipes[activeRecipe]
+		textXScale = 0.75,
+		textYScale = 0.75,
+		color = color.black
+		})
+	bowl1Text = director:createLabel({
+		x = 138 * game.fontScale, 
+		y = 150 * game.fontScale,
+		w = director.displayWidth, 
+		h = game.actualFontHeight,
+		hAlignment = "middle", 
+		vAlignment = "middle",
+		font = game.defaultFont,
+		text = level.activeRecipe.quantities[2], --*TODO* replace recipes[1] with recipes[activeRecipe]
+		textXScale = 0.75,
+		textYScale = 0.75,
+		color = color.black
+		})
+	bowl1Text = director:createLabel({
+		x = 246 * game.fontScale, 
+		y = 150 * game.fontScale,
+		w = director.displayWidth, 
+		h = game.actualFontHeight,
+		hAlignment = "middle", 
+		vAlignment = "middle",
+		font = game.defaultFont,
+		text = level.activeRecipe.quantities[3], --*TODO* replace recipes[1] with recipes[activeRecipe]
+		textXScale = 0.75,
+		textYScale = 0.75,
+		color = color.black
+		})
+	bowl1Text = director:createLabel({
+		x = 30 * game.fontScale, 
+		y = 70 * game.fontScale,
+		w = director.displayWidth, 
+		h = game.actualFontHeight,
+		hAlignment = "middle", 
+		vAlignment = "middle",
+		font = game.defaultFont,
+		text = level.activeRecipe.quantities[4], --*TODO* replace recipes[1] with recipes[activeRecipe]
+		textXScale = 0.75,
+		textYScale = 0.75,
+		color = color.black
+		})
+	bowl1Text = director:createLabel({
+		x = 138 * game.fontScale, 
+		y = 70 * game.fontScale,
+		w = director.displayWidth, 
+		h = game.actualFontHeight,
+		hAlignment = "middle", 
+		vAlignment = "middle",
+		font = game.defaultFont,
+		text = level.activeRecipe.quantities[5], --*TODO* replace recipes[1] with recipes[activeRecipe]
+		textXScale = 0.75,
+		textYScale = 0.75,
+		color = color.black
+		})
+	bowl1Text = director:createLabel({
+		x = 246 * game.fontScale, 
+		y = 70 * game.fontScale,
+		w = director.displayWidth, 
+		h = game.actualFontHeight,
+		hAlignment = "middle", 
+		vAlignment = "middle",
+		font = game.defaultFont,
+		text = level.activeRecipe.quantities[6], --*TODO* replace recipes[1] with recipes[activeRecipe]
+		textXScale = 0.75,
+		textYScale = 0.75,
+		color = color.black
+		})
 	-- Recipe name at top of screen (should be done in level.Load())
-	
+end
 
-	--Create ingredients
-	
-	--[[orange = director:createSprite(Pos1,310,"textures/ingredients/produce/orange.png")
-	greenBeans = director:createSprite(Pos2,310,"textures/ingredients/produce/greenbean.png")
-	cranberries = director:createSprite(Pos3,310,"textures/ingredients/produce/cranberries.png")
-	breadcrumb = director:createSprite(Pos4,310,"textures/ingredients/produce/breadcrumbs.png")
-	-- Herbs
-	rosemary = director:createSprite(Pos1,240,"textures/ingredients/herb/rosemary.png")
-	salt = director:createSprite(Pos2,240,"textures/ingredients/herb/salt.png")
-	pepper = director:createSprite(Pos3,240,"textures/ingredients/herb/pepper.png")
-	thyme = director:createSprite(Pos4,240,"textures/ingredients/herb/thyme.png")
-	--]]
-	--[[*****!!!!!
-	We'll need to create a different way to 
-	determine which pieces of text to display by examining an external file
-	!!!!!*****--]]
-	-- Create TextObjects for possible ingredients
-	--txtGreenbeans = director:createSprite(70,400,"textures/txtGreenbeans.png")
-	--txtSalt = director:createSprite(200,420,"textures/txtSalt.png")
-	--txtOrange = director:createSprite(8,380,"textures/txtOrange.png")
-	
-	--[[!!!!!*****
-	txtOrange:addEventListener("touch", txtTouch)
-	txtGreenbeans:addEventListener("touch", txtTouch)
-	txtSalt:addEventListener("touch", txtTouch)*****!!!!!--]]
+local touch = function(event)
+	if (director:getCurrentScene() == produceScene and event.phase == "began") then
+		-- Get touched pos
+		print(event.x .. " " .. event.y .. " " .. event.phase)
+	end
+	--TESTINGprint(event.x .. " " .. event.y .. " " .. event.phase)
+end
+
+local update = function(event)
+
 end
 
 -- Intialize the Game
 function init()
 	-- create a scene via the director to contain the main game view
 	gameScene = director:createScene()
+	--[[*TODO*Initialize audio
+	-- initAudio()*TODO*--]]
 
-	initUI()
-	
-	-- Initialize audio
-	-- initAudio() !!!!*****A yet-to-be-created funtion*****!!!!!
-
-	--[[Advertising stuff (show or hide) SEE: EXAMPLE Stage9
+	--[[*TODO*Advertising stuff (show or hide) SEE: EXAMPLE Stage9
 	if (adverts.enabled == true) then
 	    adverts:show()
 	    uiYPosition = director.displayHeight - 70
-	end--]]
+	end*TODO*--]]
 
 	--initialze level information such as Level name, recipes and ingredients
 	level.init(levelIndex)
+	initUI()
+	print(level.recipes[1].name)
+	producePantry.init(level.produceIng) --We should send the pantry a list of ingredients in the pantry, so
+	meatPantry.init(level.meatIng)
+	herbPantry.init(level.herbIng)
 	
-	producePantry.init()
-	meatPantry.init()
-	herbPantry.init()
+	
 	-- Create Ingredient grid
 	--ingredientGrid
 
@@ -285,6 +383,6 @@ function init()
 	mainMenu.init()
 	--Add event touch and update handlers
 	--!!!!!*****WE'LL NEED THESE AT SOME POINT*****!!!!!
-	--system:addEventListener("touch", touch)
-	--system:addEventListener("update", update)
+	system:addEventListener("touch", touch)
+	system:addEventListener("update", update)
 end
