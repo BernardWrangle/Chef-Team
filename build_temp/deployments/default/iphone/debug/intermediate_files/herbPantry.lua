@@ -1,10 +1,5 @@
---[[
-I think this will just be used to load the pantry scene,
-it's a child class of a level object it will reference
-everything from level--]]
+--[[A pantry holds ingredients and their behaviors]]--
 
-
---[[TO DO: Move ingredient object to pantrys]]
 module(..., package.seeall)
 
 require("class")
@@ -17,37 +12,65 @@ herbPantry = inheritsFrom(baseClass)
 herbScene = nil
 pantryIngredients = {} -- List of ingredients to load in the level
 ingArray = {}	-- array of loaded ingredients in level
+isDragging = false
+draggedIngredient = nil
+prevDraggedIngredient = nil
+ingOrigX = 0
+ingOrigY = 0
+activeRecipe = level.activeRecipe
 
 -- UI
 local returnButton
 
--- Create the pantry
-function new(ingredients)
-	local o = herbPantry:create()
-	herbPantry:init(o)
-	return o
-end
-
 function returnToKitchen(event)
-	tween:to(returnButton, {alpha=1, time=0.5})
-	switchToScene("game","shrinkGrow")
+	tween:to(returnButton, {alpha=1, time=0.2})
+	switchToScene("game","slideInL")
 	game:returnFromPantry()
 end
 
 function returnButtonTouched(event)
-	if (event.phase == "ended") then
+	if (event.phase == "began") then
 		tween:to(returnButton, {alpha=0.3, time=0.2, onComplete=returnToKitchen})
 	end
 end
 
-function setPantryType(pantry_type)
-	pantryType = pantry_type
+function ingredientTouched(event)
+	-- First, check that another ingredient is not being dragged
+	if (isDragging == false) then
+		draggedIngredient = event.target	
+		--TESTprint(event.target)
+	end
+
+	if (event.phase == "began") then
+		isDragging = true
+		ingOrigX = draggedIngredient.x
+		ingOrigY = draggedIngredient.y
+		--TESTprint("Touch Start")
+	end
+	
+	if (event.phase == "moved") then
+		--TESTprint("Dragging")
+		if (draggedIngredient ~= nil) then
+			tween:to(draggedIngredient, {x=event.x, y=event.y, time=0})
+		end
+	end
+
+	if (event.phase == "ended") then
+		--TESTprint("Touch Ended")
+		isDragging = false
+		prevDraggedIngredient = draggedIngredient
+		tween:to(draggedIngredient, {x=ingOrigX, y=ingOrigY, time=0.2})
+		draggedIngredient = nil
+		--[[TODO************************************
+		*   Add code that tweens ingredient back   *
+		*	to its original position or swap with  *
+		*	another ingredient					   *
+		************************************TODO--]]
+	end
 end
 
 function init(ingredients)
 	pantryIngredients = ingredients
-	--LoadIngredients()
-
 	herbScene = director:createScene()
 	
 	local bg = director:createSprite(director.displayCenterX, director.displayCenterY, "textures/backgrounds/1_BG.png")
@@ -63,8 +86,7 @@ function init(ingredients)
 										 })
 	returnButton:addEventListener("touch", returnButtonTouched)
 
-	print("here")
-
+	-- Load this levels pantry ingredients
 	local xPos = 32
 	local yPos = 300
 	local rowCount = 0
@@ -76,9 +98,9 @@ function init(ingredients)
 
 	for key, value in pairs(pantryIngredients) do
 		for i, j in pairs(tempArray) do
-			print(j .. "::" .. value)
+			--TESTprint(j .. "::" .. value)
 			if j == value then
-				print("BREAK")
+				--TESTprint("BREAK")
 				loaded = true
 				break
 			end
@@ -87,10 +109,10 @@ function init(ingredients)
 		if loaded == false then
 			tempArray[tempIndex] = value
 			tempIndex = tempIndex + 1
-			print("loading" .. value)
+			--TESTprint("loading" .. value)
 			ingArray[key] = director:createSprite({x=xPos, y=yPos,
 											       xAnchor=0.5, yAnchor=0.5, 
-											       source="textures/ingredients/herb/" .. value .. ".png"
+											       zOrder=1, source="textures/ingredients/herb/" .. value .. ".png"
 												 })
 			ingArray[key]:addEventListener("touch", ingredientTouched)
 
@@ -109,83 +131,100 @@ function init(ingredients)
 			**INGREDIENTS]]	
 		end
 	end
-	
+	prepBowl1 = director:createSprite({x=50, y=120, xAnchor=0.5, yAnchor=0.5,
+									   zOrder=0, source="textures/objects/bowl.png"
+									 })
+	prepBowl2 = director:createSprite({x=158, y=120, xAnchor=0.5, yAnchor=0.5,
+									   zOrder=0, source="textures/objects/bowl.png"
+									 })
+	prepBowl3 = director:createSprite({x=266, y=120, xAnchor=0.5, yAnchor=0.5,
+									   zOrder=0, source="textures/objects/bowl.png"
+									 })
+	prepBowl4 = director:createSprite({x=50, y=40, xAnchor=0.5, yAnchor=0.5,
+									   zOrder=0, source="textures/objects/bowl.png"
+									 })
+	prepBowl5 = director:createSprite({x=158, y=40, xAnchor=0.5, yAnchor=0.5,
+									   zOrder=0, source="textures/objects/bowl.png"
+									 })
+	prepBowl6 = director:createSprite({x=266, y=40, xAnchor=0.5, yAnchor=0.5,
+									   zOrder=0, source="textures/objects/bowl.png"
+									 })
+	bowl1Text = director:createLabel({
+		x = 30 * game.fontScale, 
+		y = 150 * game.fontScale,
+		w = director.displayWidth, 
+		h = game.actualFontHeight,
+		hAlignment = "middle", 
+		vAlignment = "middle",
+		font = game.defaultFont,
+		text = level.activeRecipe.quantities[1], --*TODO* replace recipes[1] with recipes[activeRecipe]
+		textXScale = 0.75,
+		textYScale = 0.75,
+		color = color.black
+		})
+	bowl1Text = director:createLabel({
+		x = 138 * game.fontScale, 
+		y = 150 * game.fontScale,
+		w = director.displayWidth, 
+		h = game.actualFontHeight,
+		hAlignment = "middle", 
+		vAlignment = "middle",
+		font = game.defaultFont,
+		text = level.activeRecipe.quantities[2], --*TODO* replace recipes[1] with recipes[activeRecipe]
+		textXScale = 0.75,
+		textYScale = 0.75,
+		color = color.black
+		})
+	bowl1Text = director:createLabel({
+		x = 246 * game.fontScale, 
+		y = 150 * game.fontScale,
+		w = director.displayWidth, 
+		h = game.actualFontHeight,
+		hAlignment = "middle", 
+		vAlignment = "middle",
+		font = game.defaultFont,
+		text = level.activeRecipe.quantities[3], --*TODO* replace recipes[1] with recipes[activeRecipe]
+		textXScale = 0.75,
+		textYScale = 0.75,
+		color = color.black
+		})
+	bowl1Text = director:createLabel({
+		x = 30 * game.fontScale, 
+		y = 70 * game.fontScale,
+		w = director.displayWidth, 
+		h = game.actualFontHeight,
+		hAlignment = "middle", 
+		vAlignment = "middle",
+		font = game.defaultFont,
+		text = level.activeRecipe.quantities[4], --*TODO* replace recipes[1] with recipes[activeRecipe]
+		textXScale = 0.75,
+		textYScale = 0.75,
+		color = color.black
+		})
+	bowl1Text = director:createLabel({
+		x = 138 * game.fontScale, 
+		y = 70 * game.fontScale,
+		w = director.displayWidth, 
+		h = game.actualFontHeight,
+		hAlignment = "middle", 
+		vAlignment = "middle",
+		font = game.defaultFont,
+		text = level.activeRecipe.quantities[5], --*TODO* replace recipes[1] with recipes[activeRecipe]
+		textXScale = 0.75,
+		textYScale = 0.75,
+		color = color.black
+		})
+	bowl1Text = director:createLabel({
+		x = 246 * game.fontScale, 
+		y = 70 * game.fontScale,
+		w = director.displayWidth, 
+		h = game.actualFontHeight,
+		hAlignment = "middle", 
+		vAlignment = "middle",
+		font = game.defaultFont,
+		text = level.activeRecipe.quantities[6], --*TODO* replace recipes[1] with recipes[activeRecipe]
+		textXScale = 0.75,
+		textYScale = 0.75,
+		color = color.black
+		})
 end
-
-function ingredientTouched(event)
-	--[[************************************************
-	*TODO: Detect whether another ingredient is already*
-	*selected, if so, you can not move this ingredient *
-	************************************************]]--
-	if (event.phase == "moved") then
-		tween:to(event.target, {x=event.x, y=event.y, time=0})
-	end
-end
-
-
-
---[[
-function LoadPantry(type)
-
-	--ingredient.new(value, type, ingredientXPos, ingredientYPos)
-	
-	print("Loading Pantry...")
-	
-	local ingredientXPos = 32 -- starting position of ingredients in pantry row
-	local ingredientYPos = 300
-	local Xbuffer = 64
-	local Ybuffer = 76
-	local tempList = {""}		-- Use this to keep track of loaded assets, if already in this list, then it's already been loaded
-	local tempIndex = 1
-	local rowCount = 0
-	local loaded = false
-	local tempArray = {""}
-
-	if type == "produce" then
-		tempArray = level.produceIng
-	end
-	if type == "meat" then
-		tempArray = level.meatIng
-	end
-	if type == "herb" then
-		tempArray = level.herbIng
-	end
-	-- Run for produce+grains
-	--if type == "produce" then
-		for key, value in pairs(tempArray) do
-			--TESTINGprint("!!" .. type .. "!!")
-			-- Check if this ingredient has already been loaded
-			for i, j in pairs(tempList) do
-				--TESTINGprint(j .. "::" .. value)
-				if j == value then
-					--TESTINGprint("BREAK")
-					loaded = true
-					break
-				end
-			end
-
-			if loaded == false then
-				tempList[tempIndex] = value
-				tempIndex = tempIndex + 1
-				print(value .. " " .. type)
-				ingredient.new(value, type, ingredientXPos, ingredientYPos)
-				rowCount = rowCount + 1
-				print("WTF")
-				[once we've filled a row, we want to reset our X pos and Y pos
-				**TO DO**
-				**NEED TO ADD A CONDITION FOR IF WE'VE FILLED AN ENTIRE 
-				**PANTRY PAGE TO CREATE A NEW PAGE AND START FILLING IT WITH 
-				**INGREDIENTS]
-				--
-				if rowCount > 3 then
-					rowCount = 0
-					ingredientXPos = 32
-					ingredientYPos = ingredientYPos - Ybuffer
-				else
-					ingredientXPos = ingredientXPos + Xbuffer
-				end
-			end
-			loaded = false
-		end
-	--end
-end]]

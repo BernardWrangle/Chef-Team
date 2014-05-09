@@ -7,7 +7,6 @@ require("level")
 require("ingredient")
 
 -- Globals
-pantry = nil
 pantryType = "meat"
 meatPantry = inheritsFrom(baseClass)
 meatScene = nil
@@ -16,13 +15,16 @@ ingArray = {}
 isDragging = false
 draggedIngredient = nil
 prevDraggedIngredient = nil
+ingOrigX = 0
+ingOrigY = 0
+activeRecipe = level.activeRecipe
 
 -- UI
 local returnButton
 
 function returnToKitchen(event)
-	tween:to(returnButton, {alpha=1, time=0.5})
-	switchToScene("game","shrinkGrow")
+	tween:to(returnButton, {alpha=1, time=0.2})
+	switchToScene("game","slideInT")
 	game:returnFromPantry()
 end
 
@@ -40,6 +42,8 @@ function ingredientTouched(event)
 
 	if (event.phase == "began") then
 		isDragging = true
+		ingOrigX = draggedIngredient.x
+		ingOrigY = draggedIngredient.y
 		--TESTprint("Touch Start")
 	end
 	
@@ -54,6 +58,7 @@ function ingredientTouched(event)
 		--TESTprint("Touch Ended")
 		isDragging = false
 		prevDraggedIngredient = draggedIngredient
+		tween:to(draggedIngredient, {x=ingOrigX, y=ingOrigY, time=0.2})
 		draggedIngredient = nil
 		--[[TODO************************************
 		*   Add code that tweens ingredient back   *
@@ -106,7 +111,7 @@ function init(ingredients)
 			--TESTprint("loading" .. value)
 			ingArray[key] = director:createSprite({x=xPos, y=yPos,
 											       xAnchor=0.5, yAnchor=0.5, 
-											       source="textures/ingredients/meat/" .. value .. ".png"
+											       zOrder=1, source="textures/ingredients/meat/" .. value .. ".png"
 												 })
 			ingArray[key]:addEventListener("touch", ingredientTouched)
 
@@ -126,21 +131,99 @@ function init(ingredients)
 		end
 	end
 	prepBowl1 = director:createSprite({x=50, y=120, xAnchor=0.5, yAnchor=0.5,
-									   source="textures/objects/bowl.png"
+									   zOrder=0, source="textures/objects/bowl.png"
 									 })
 	prepBowl2 = director:createSprite({x=158, y=120, xAnchor=0.5, yAnchor=0.5,
-									   source="textures/objects/bowl.png"
+									   zOrder=0, source="textures/objects/bowl.png"
 									 })
 	prepBowl3 = director:createSprite({x=266, y=120, xAnchor=0.5, yAnchor=0.5,
-									   source="textures/objects/bowl.png"
+									   zOrder=0, source="textures/objects/bowl.png"
 									 })
 	prepBowl4 = director:createSprite({x=50, y=40, xAnchor=0.5, yAnchor=0.5,
-									   source="textures/objects/bowl.png"
+									   zOrder=0, source="textures/objects/bowl.png"
 									 })
 	prepBowl5 = director:createSprite({x=158, y=40, xAnchor=0.5, yAnchor=0.5,
-									   source="textures/objects/bowl.png"
+									   zOrder=0, source="textures/objects/bowl.png"
 									 })
 	prepBowl6 = director:createSprite({x=266, y=40, xAnchor=0.5, yAnchor=0.5,
-									   source="textures/objects/bowl.png"
+									   zOrder=0, source="textures/objects/bowl.png"
 									 })
+	bowl1Text = director:createLabel({
+		x = 30 * game.fontScale, 
+		y = 150 * game.fontScale,
+		w = director.displayWidth, 
+		h = game.actualFontHeight,
+		hAlignment = "middle", 
+		vAlignment = "middle",
+		font = game.defaultFont,
+		text = level.activeRecipe.quantities[1], --*TODO* replace recipes[1] with recipes[activeRecipe]
+		textXScale = 0.75,
+		textYScale = 0.75,
+		color = color.black
+		})
+	bowl1Text = director:createLabel({
+		x = 138 * game.fontScale, 
+		y = 150 * game.fontScale,
+		w = director.displayWidth, 
+		h = game.actualFontHeight,
+		hAlignment = "middle", 
+		vAlignment = "middle",
+		font = game.defaultFont,
+		text = level.activeRecipe.quantities[2], --*TODO* replace recipes[1] with recipes[activeRecipe]
+		textXScale = 0.75,
+		textYScale = 0.75,
+		color = color.black
+		})
+	bowl1Text = director:createLabel({
+		x = 246 * game.fontScale, 
+		y = 150 * game.fontScale,
+		w = director.displayWidth, 
+		h = game.actualFontHeight,
+		hAlignment = "middle", 
+		vAlignment = "middle",
+		font = game.defaultFont,
+		text = level.activeRecipe.quantities[3], --*TODO* replace recipes[1] with recipes[activeRecipe]
+		textXScale = 0.75,
+		textYScale = 0.75,
+		color = color.black
+		})
+	bowl1Text = director:createLabel({
+		x = 30 * game.fontScale, 
+		y = 70 * game.fontScale,
+		w = director.displayWidth, 
+		h = game.actualFontHeight,
+		hAlignment = "middle", 
+		vAlignment = "middle",
+		font = game.defaultFont,
+		text = level.activeRecipe.quantities[4], --*TODO* replace recipes[1] with recipes[activeRecipe]
+		textXScale = 0.75,
+		textYScale = 0.75,
+		color = color.black
+		})
+	bowl1Text = director:createLabel({
+		x = 138 * game.fontScale, 
+		y = 70 * game.fontScale,
+		w = director.displayWidth, 
+		h = game.actualFontHeight,
+		hAlignment = "middle", 
+		vAlignment = "middle",
+		font = game.defaultFont,
+		text = level.activeRecipe.quantities[5], --*TODO* replace recipes[1] with recipes[activeRecipe]
+		textXScale = 0.75,
+		textYScale = 0.75,
+		color = color.black
+		})
+	bowl1Text = director:createLabel({
+		x = 246 * game.fontScale, 
+		y = 70 * game.fontScale,
+		w = director.displayWidth, 
+		h = game.actualFontHeight,
+		hAlignment = "middle", 
+		vAlignment = "middle",
+		font = game.defaultFont,
+		text = level.activeRecipe.quantities[6], --*TODO* replace recipes[1] with recipes[activeRecipe]
+		textXScale = 0.75,
+		textYScale = 0.75,
+		color = color.black
+		})
 end

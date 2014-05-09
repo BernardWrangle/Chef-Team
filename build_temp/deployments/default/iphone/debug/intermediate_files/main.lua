@@ -34,7 +34,13 @@ system:addEventListener("exit", exit)
 function switchToScene(scene_name, transition_type)
 	if (scene_name == "game") then
 		if (transition_type == "shrinkGrow") then
-			director:moveToScene(game.gameScene, {transitionType="shrinkGrow", transitionTime=1.5})
+			director:moveToScene(game.gameScene, {transitionType="shrinkGrow", transitionTime=0.5})
+		elseif (transition_type == "slideInR") then
+			director:moveToScene(game.gameScene, {transitionType="slideInR", transitionTime=0.5})
+		elseif (transition_type == "slideInL") then
+			director:moveToScene(game.gameScene, {transitionType="slideInL", transitionTime=0.5})
+		elseif (transition_type == "slideInT") then
+			director:moveToScene(game.gameScene, {transitionType="slideInT", transitionTime=0.5})
 		else
 			director:moveToScene(game.gameScene, {transitionType="slideInL", transitionTime=0.5})
 		end
@@ -46,12 +52,12 @@ function switchToScene(scene_name, transition_type)
 		director:moveToScene (optionsScene, {transitionType="slideInR", transitionTime=0.5})
 	elseif (scene_name == "produceScene") then
 		--level.LoadPantry("produce")
-		director:moveToScene (producePantry.produceScene, {transitionType="shrinkGrow", transitionTime=1.5})
+		director:moveToScene (producePantry.produceScene, {transitionType="slideInL", transitionTime=0.5})
 	elseif (scene_name == "meatScene") then
 		--level.LoadPantry("meat")
-		director:moveToScene (meatPantry.meatScene, {transitionType="shrinkGrow", transitionTime=1.5})
+		director:moveToScene (meatPantry.meatScene, {transitionType="slideInB", transitionTime=0.5})
 	elseif (scene_name == "herbScene") then
 		--level.LoadPantry("herb")
-		director:moveToScene (herbPantry.herbScene, {transitionType="shrinkGrow", transitionTime=1.5})
+		director:moveToScene (herbPantry.herbScene, {transitionType="slideInR", transitionTime=0.5})
 	end
 end

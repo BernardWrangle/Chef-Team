@@ -9,7 +9,6 @@ module(..., package.seeall)
 
 -- OO functions
 require("class")
-require("game")
 require("level")
 
 -- Globals
@@ -17,7 +16,7 @@ name		=	""	--recipe name
 recipeType	=	""	--type of recipe
 ingredients	=	{}	--ingredients in recipe
 ingredientType =	{} --either 1=produce+grains, 2=herbs+spices, 3=meat+grains
-quantity	=	{}	--this applies to the amount of each ingredient and is always the same index as the ingredient it relates to. So quantity[5] refers to the amount of ingredient[5] in the recipe
+quantities	=	{}	--this applies to the amount of each ingredient and is always the same index as the ingredient it relates to. So quantity[5] refers to the amount of ingredient[5] in the recipe
 price		=	""	--base price earned from recipe
 cookTime	=	""	--time in seconds it take to prepare recipe
 
@@ -31,14 +30,14 @@ recipe = inheritsFrom(baseClass)
 --]]
 function init(recipeName)
 	path = "recipes/" .. recipeName .. ".txt"
-	print(path)
+	--TESTprint(path)
 	local tempArray = {}
 	local index = 1
 	local ingredientIndex = 1
 
 	local file = io.open(path, "r")
 	if not file then
-		print("-----ERROR-----, recipe file not found: path = " .. path)
+		print("!-----ERROR-----!, recipe file not found: path = " .. path)
 		return false
 	end
 	
@@ -60,7 +59,7 @@ function init(recipeName)
 		
 		if tempArray[1] == "ingredient" then
 			ingredients[ingredientIndex] = tempArray[2]
-			quantity[ingredientIndex] = tempArray[3]
+			quantities[ingredientIndex] = tempArray[3]
 			ingredientType[ingredientIndex] = tempArray[4]
 			ingredientIndex = ingredientIndex + 1
 		end
@@ -75,4 +74,14 @@ function init(recipeName)
 		
 		index = 1 -- reset index before next line
 	end
+	return recipe
+end
+
+-- Returns array of ingredients in this recipe
+function GetIngredients(key)
+	return ingredients
+end
+
+function GetQuantities(key)
+	return quantities
 end

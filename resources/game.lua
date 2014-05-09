@@ -108,7 +108,7 @@ function ProduceButtonTouched(event)
 	if (event.phase == "began") then
 		--tween:to(MeatButton, {alpha=0, delay=0.08, time=0.25, easing=ease.expIn})
 		--tween:to(HerbButton, {alpha=0, delay=0.08, time=0.25, easing=ease.expIn})
-		tween:to(produceButton, {alpha=0, time=0.5, easing=ease.expIn, onComplete=ProducePantry})
+		tween:to(produceButton, {alpha=0.3, time=0.2, easing=ease.expIn, onComplete=ProducePantry})
 	end
 end
 
@@ -116,7 +116,7 @@ function ProducePantry(event)
 	-- reset menu
 	--oldGameState = gameState
 	--gameState = gameStates.producePantry
-	tween:to(produceButton, {alpha=1, time=0.5})
+	tween:to(produceButton, {alpha=1, time=0.2})
 	switchToScene("produceScene")
 end
 
@@ -125,12 +125,12 @@ function MeatButtonTouched(event)
 	if (event.phase == "began") then
 		--tween:to(ProduceButton, {alpha=0, delay=0.08, time=0.25, easing=ease.expIn})
 		--tween:to(HerbButton, {alpha=0, delay=0.08, time=0.25, easing=ease.expIn})
-		tween:to(meatButton, {alpha=0, time=0.5, easing=ease.expIn, onComplete=MeatPantry})
+		tween:to(meatButton, {alpha=0.3, time=0.2, easing=ease.expIn, onComplete=MeatPantry})
 	end
 end
 
 function MeatPantry(event)
-	tween:to(meatButton, {alpha=1, time=0.5})
+	tween:to(meatButton, {alpha=1, time=0.2})
 	switchToScene("meatScene")
 end
 
@@ -139,12 +139,12 @@ function HerbButtonTouched(event)
 	if (event.phase == "began") then
 		--tween:to(MeatButton, {alpha=0, delay=0.08, time=0.25, easing=ease.expIn})
 		--tween:to(ProduceButton, {alpha=0, delay=0.08, time=0.25, easing=ease.expIn})
-		tween:to(herbButton, {alpha=0, time=0.5, easing=ease.expIn, onComplete=HerbPantry})
+		tween:to(herbButton, {alpha=0.3, time=0.2, easing=ease.expIn, onComplete=HerbPantry})
 	end
 end
 
 function HerbPantry(event)
-	tween:to(herbButton, {alpha=1, time=0.5})
+	tween:to(herbButton, {alpha=1, time=0.2})
 	--level.ingredient:setPantry("herb", level.herbIng) --tell our ingredients which ones to draw in the pantry
 	switchToScene("herbScene")
 end
@@ -264,7 +264,7 @@ function initUI()
 		hAlignment = "middle", 
 		vAlignment = "middle",
 		font = game.defaultFont,
-		text = level.activeRecipe.quantities[1], --*TODO* replace recipes[1] with recipes[activeRecipe]
+		text = level.activeRecipe.quantities[1],
 		textXScale = 0.75,
 		textYScale = 0.75,
 		color = color.black
@@ -277,7 +277,7 @@ function initUI()
 		hAlignment = "middle", 
 		vAlignment = "middle",
 		font = game.defaultFont,
-		text = level.activeRecipe.quantities[2], --*TODO* replace recipes[1] with recipes[activeRecipe]
+		text = level.activeRecipe.quantities[2], 
 		textXScale = 0.75,
 		textYScale = 0.75,
 		color = color.black
@@ -290,7 +290,7 @@ function initUI()
 		hAlignment = "middle", 
 		vAlignment = "middle",
 		font = game.defaultFont,
-		text = level.activeRecipe.quantities[3], --*TODO* replace recipes[1] with recipes[activeRecipe]
+		text = level.activeRecipe.quantities[3], 
 		textXScale = 0.75,
 		textYScale = 0.75,
 		color = color.black
@@ -303,7 +303,7 @@ function initUI()
 		hAlignment = "middle", 
 		vAlignment = "middle",
 		font = game.defaultFont,
-		text = level.activeRecipe.quantities[4], --*TODO* replace recipes[1] with recipes[activeRecipe]
+		text = level.activeRecipe.quantities[4], 
 		textXScale = 0.75,
 		textYScale = 0.75,
 		color = color.black
@@ -316,7 +316,7 @@ function initUI()
 		hAlignment = "middle", 
 		vAlignment = "middle",
 		font = game.defaultFont,
-		text = level.activeRecipe.quantities[5], --*TODO* replace recipes[1] with recipes[activeRecipe]
+		text = level.activeRecipe.quantities[5], 
 		textXScale = 0.75,
 		textYScale = 0.75,
 		color = color.black
@@ -329,7 +329,7 @@ function initUI()
 		hAlignment = "middle", 
 		vAlignment = "middle",
 		font = game.defaultFont,
-		text = level.activeRecipe.quantities[6], --*TODO* replace recipes[1] with recipes[activeRecipe]
+		text = level.activeRecipe.quantities[6],
 		textXScale = 0.75,
 		textYScale = 0.75,
 		color = color.black

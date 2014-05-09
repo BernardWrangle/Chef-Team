@@ -74,7 +74,13 @@ function New(levelName, recipeArray)
 		end
 	end
 	ingredientCount = meatCount + produceCount + herbCount
-	activeRecipe = recipes[1]
+	activeRecipe = recipes[1] --[[*TODO***********************************
+							  *    This will be changed. There should    *
+							  *     be a function that sets the          *
+							  *	   activeRecipe when the player clicks   *
+							  *	   a ticket. Also, when a level starts   *
+							  *	   there will be no active recipe        *
+							  ***********************************TODO*--]]
 end
 
 --[[init()- called from game.init(). Game controls the current level

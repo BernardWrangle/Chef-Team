@@ -23,8 +23,8 @@ activeRecipe = level.activeRecipe
 local returnButton
 
 function returnToKitchen(event)
-	tween:to(returnButton, {alpha=1, time=0.5})
-	switchToScene("game","shrinkGrow")
+	tween:to(returnButton, {alpha=1, time=0.2})
+	switchToScene("game","slideInL")
 	game:returnFromPantry()
 end
 
@@ -38,13 +38,13 @@ function ingredientTouched(event)
 	-- First, check that another ingredient is not being dragged
 	if (isDragging == false) then
 		draggedIngredient = event.target	
-		print(event.target)
+		--TESTprint(event.target)
 	end
 
 	if (event.phase == "began") then
 		isDragging = true
-		ingOrigX = event.x
-		ingOrigY = event.y
+		ingOrigX = draggedIngredient.x
+		ingOrigY = draggedIngredient.y
 		--TESTprint("Touch Start")
 	end
 	
@@ -59,13 +59,13 @@ function ingredientTouched(event)
 		--TESTprint("Touch Ended")
 		isDragging = false
 		prevDraggedIngredient = draggedIngredient
+		tween:to(draggedIngredient, {x=ingOrigX, y=ingOrigY, time=0.2})
 		draggedIngredient = nil
-		tween:to(draggedIngredient, {x=ingOrigX, y=ingOrigY})
 		--[[TODO************************************
 		*   Add code that tweens ingredient back   *
 		*	to its original position or swap with  *
 		*	another ingredient					   *
-		************************************TODO]]--
+		************************************TODO--]]
 	end
 end
 
