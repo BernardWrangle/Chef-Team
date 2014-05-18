@@ -108,7 +108,7 @@ function ProduceButtonTouched(event)
 	if (event.phase == "began") then
 		--tween:to(MeatButton, {alpha=0, delay=0.08, time=0.25, easing=ease.expIn})
 		--tween:to(HerbButton, {alpha=0, delay=0.08, time=0.25, easing=ease.expIn})
-		tween:to(produceButton, {alpha=0.3, time=0.2, easing=ease.expIn, onComplete=ProducePantry})
+		tween:to(produceButton, {alpha=0.3, time=0.1, easing=ease.expIn, onComplete=ProducePantry})
 	end
 end
 
@@ -116,7 +116,7 @@ function ProducePantry(event)
 	-- reset menu
 	--oldGameState = gameState
 	--gameState = gameStates.producePantry
-	tween:to(produceButton, {alpha=1, time=0.2})
+	tween:to(produceButton, {alpha=1, time=0})
 	switchToScene("produceScene")
 end
 
@@ -125,12 +125,12 @@ function MeatButtonTouched(event)
 	if (event.phase == "began") then
 		--tween:to(ProduceButton, {alpha=0, delay=0.08, time=0.25, easing=ease.expIn})
 		--tween:to(HerbButton, {alpha=0, delay=0.08, time=0.25, easing=ease.expIn})
-		tween:to(meatButton, {alpha=0.3, time=0.2, easing=ease.expIn, onComplete=MeatPantry})
+		tween:to(meatButton, {alpha=0.3, time=0.1, easing=ease.expIn, onComplete=MeatPantry})
 	end
 end
 
 function MeatPantry(event)
-	tween:to(meatButton, {alpha=1, time=0.2})
+	tween:to(meatButton, {alpha=1, time=0.1})
 	switchToScene("meatScene")
 end
 
@@ -139,7 +139,7 @@ function HerbButtonTouched(event)
 	if (event.phase == "began") then
 		--tween:to(MeatButton, {alpha=0, delay=0.08, time=0.25, easing=ease.expIn})
 		--tween:to(ProduceButton, {alpha=0, delay=0.08, time=0.25, easing=ease.expIn})
-		tween:to(herbButton, {alpha=0.3, time=0.2, easing=ease.expIn, onComplete=HerbPantry})
+		tween:to(herbButton, {alpha=0.3, time=0.1, easing=ease.expIn, onComplete=HerbPantry})
 	end
 end
 

@@ -3,7 +3,7 @@ This folder contains an application deployed using the Marmalade SDK.
     Application : ChefTeam
         Version : 0.0.1
     SDK Version : 7.1.0 [358387]
-  Date Deployed : Thu May 08 17:27:35 2014
+  Date Deployed : Tue May 13 19:10:16 2014
       Target OS : iphone (iOS (iPhone, iPad, iPod))
   Configuration : Debug
 
